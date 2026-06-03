@@ -1,0 +1,118 @@
+# ==============================================================================
+# Node.js & TypeScript
+# ==============================================================================
+# Dependency directories
+node_modules/
+jspm_packages/
+bower_components/
+
+# Build and Compilation
+dist/
+build/
+out/
+lib/
+*.tsbuildinfo
+.husky
+.github
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Caches
+.npm/
+.npm-cache/
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache/
+
+# Coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+.node_repl_history
+
+# ==============================================================================
+# Environment Variables & Secrets
+# ==============================================================================
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+.env.staging
+
+# Keys & Certificates
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+
+# ==============================================================================
+# IDEs and Editors
+# ==============================================================================
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# JetBrains / IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Vim/Emacs
+*.swp
+*.swo
+*~
+.#*
+
+# ==============================================================================
+# OS Generated Files
+# ==============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+
+# ==============================================================================
+# Project Specific
+# ==============================================================================
+local/
+data/

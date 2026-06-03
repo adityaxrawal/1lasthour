@@ -1,0 +1,92 @@
+{
+  "name": "lasthour-backend",
+  "version": "1.0.0",
+  "description": "1LastHour CFA Study Platform — Fastify Backend",
+  "type": "module",
+  "main": "dist/server.js",
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc -p tsconfig.build.json --outDir dist",
+    "build:clean": "rimraf dist && pnpm run build",
+    "build:verify": "node -e \"import('./dist/server.js').then(() => console.log('Build entry point OK')).catch(e => { console.error(e); process.exit(1); })\"",
+    "start": "node dist/server.js",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:seed": "tsx scripts/seed.ts",
+    "cache:warm": "tsx scripts/warm-cache.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ci": "vitest run --coverage --reporter=verbose",
+    "lint": "eslint src --max-warnings 0",
+    "lint:fix": "eslint src --fix",
+    "typecheck": "tsc --noEmit",
+    "typecheck:build": "tsc --noEmit -p tsconfig.build.json",
+    "validate:env": "tsx scripts/validate-env.ts",
+    "format:check": "prettier --check \"src/**/*.{ts,js,json}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,js,json}\"",
+    "check:deps": "pnpm install --frozen-lockfile --ignore-scripts",
+    "check:audit": "pnpm audit --audit-level=high",
+    "check:outdated": "pnpm outdated || true",
+    "check:circular": "madge --circular --extensions ts src",
+    "check:secrets": "secretlint \"**/*\"",
+    "preflight:local": "node scripts/validate.js",
+    "preflight:ci": "node scripts/validate.js --ci",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@fastify/compress": "8.3.1",
+    "@fastify/cookie": "11.0.2",
+    "@fastify/cors": "10.1.0",
+    "@fastify/helmet": "13.0.2",
+    "@fastify/rate-limit": "10.3.0",
+    "bcryptjs": "2.4.3",
+    "dotenv": "16.5.0",
+    "fastify": "5.8.5",
+    "ioredis": "5.4.2",
+    "jsonwebtoken": "9.0.2",
+    "pg": "8.13.3",
+    "pino": "9.7.0",
+    "pino-pretty": "13.0.0",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.28.0",
+    "@secretlint/secretlint-rule-preset-recommend": "13.0.2",
+    "@types/bcryptjs": "2.4.6",
+    "@types/jsonwebtoken": "9.0.9",
+    "@types/node": "22.15.29",
+    "@types/pg": "8.11.14",
+    "@types/supertest": "6.0.3",
+    "@vitest/coverage-v8": "4.1.8",
+    "eslint": "9.28.0",
+    "eslint-config-prettier": "10.1.5",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.0",
+    "madge": "^8.0.0",
+    "nodemon": "3.1.9",
+    "prettier": "3.5.3",
+    "rimraf": "6.0.1",
+    "secretlint": "13.0.2",
+    "supertest": "7.1.0",
+    "tsx": "4.19.4",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.33.1",
+    "vitest": "4.1.8"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "**/*": [
+      "secretlint"
+    ]
+  },
+  "overrides": {
+    "esbuild": "0.25.5"
+  }
+}
