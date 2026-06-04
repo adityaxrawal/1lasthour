@@ -23,7 +23,10 @@ export const topicsController = {
     }
 
     const topics = await topicsService.list(parsed.data);
-    return sendSecureResponse(req, reply, topics, { total: topics.length, level: parsed.data.level });
+    return sendSecureResponse(req, reply, topics, {
+      total: topics.length,
+      level: parsed.data.level,
+    });
   },
 
   async getById(req: FastifyRequest, reply: FastifyReply) {
