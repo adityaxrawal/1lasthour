@@ -1,10 +1,12 @@
+import { render, fireEvent } from '@testing-library/react';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { MemoryRouter, useSearchParams } from 'react-router-dom';
-import GlobalSearchResults from './GlobalSearchResults';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+
 import { useTopicsQuery } from '@/features/cfa/hooks/useTopicsQuery';
 import { globalSearch, groupResultsByType } from '@/utils/searchUtils';
+
+import GlobalSearchResults from './GlobalSearchResults';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const actual = await importOriginal();

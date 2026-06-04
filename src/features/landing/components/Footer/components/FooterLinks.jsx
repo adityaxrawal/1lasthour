@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 const FooterLinkItem = memo(function FooterLinkItem({ to, href, children }) {
   const className = "text-white transition-colors hover:text-secondary";

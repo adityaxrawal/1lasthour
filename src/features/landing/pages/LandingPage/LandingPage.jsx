@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from 'react';
 
 import { GlobalHeader } from '@/components/layout/GlobalHeader';
-import { LANDING_NAV_LINKS, LANDING_FEATURES, LANDING_FAQS } from '../../constants/landingConstants';
 
 import {
   HeroSection,
@@ -14,6 +13,8 @@ import {
   CTABannerSection,
   Footer,
 } from '../../components';
+import { LANDING_NAV_LINKS, LANDING_FEATURES, LANDING_FAQS } from '../../constants/landingConstants';
+
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
