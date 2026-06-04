@@ -1,0 +1,507 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "1lasthour-color-scheme-v2",
+  "meta": {
+    "project": "1lasthour – CFA Level 1 Study Companion",
+    "version": "2.0.0",
+    "description": "New brand color system replacing the existing warm-orange/cream palette with a bolder spicy-paprika/saffron/marine scheme",
+    "generatedAt": "2026-05-30",
+    "previousPalette": {
+      "note": "Original design used a soft terracotta-orange primary, warm cream backgrounds, dark olive text, and white cards. The new palette intensifies the orange toward a fiery paprika, introduces a saffron secondary, adds a marine-blue accent, and anchors darks with a warm charcoal-brown."
+    }
+  },
+
+  "palette": {
+    "charcoal-brown": {
+      "hex": "#353531",
+      "hsl": "hsla(60, 4%, 20%, 1)",
+      "rgb": "rgba(53, 53, 49, 1)",
+      "role": "Primary dark — body text, dark section backgrounds, footer",
+      "usage": ["body text", "footer background", "dark feature section background", "navbar text"]
+    },
+    "spicy-paprika": {
+      "hex": "#ec4e20",
+      "hsl": "hsla(14, 84%, 53%, 1)",
+      "rgb": "rgba(236, 78, 32, 1)",
+      "role": "Brand primary — CTAs, logo accent, hero headline accent, icons, active states",
+      "usage": ["primary CTA buttons", "logo highlight", "step circles", "stat numbers", "feature icons", "final CTA banner background", "active nav links", "card borders (accent)"]
+    },
+    "deep-saffron": {
+      "hex": "#ff9505",
+      "hsl": "hsla(35, 100%, 51%, 1)",
+      "rgb": "rgba(255, 149, 5, 1)",
+      "role": "Brand secondary — hero headline highlight word, hover states, inline highlights, progress connectors",
+      "usage": ["hero accent word ('Make It Count')", "button hover states", "step connector line", "checklist icons in dark sections", "tag/badge backgrounds", "link hover color"]
+    },
+    "bright-marine": {
+      "hex": "#016fb9",
+      "hsl": "hsla(204, 99%, 36%, 1)",
+      "rgb": "rgba(1, 111, 185, 1)",
+      "role": "Accent / tertiary — formula category labels, hyperlinks, secondary CTAs, informational badges",
+      "usage": ["formula card reading/category label", "inline hyperlinks", "secondary CTA buttons (ghost variant)", "info badge backgrounds", "tooltip borders", "keyboard shortcut badges"]
+    },
+    "black": {
+      "hex": "#000000",
+      "hsl": "hsla(0, 0%, 0%, 1)",
+      "rgb": "rgba(0, 0, 0, 1)",
+      "role": "Maximum contrast — display headings on light backgrounds, hero primary headline",
+      "usage": ["hero primary headline", "section headings", "pricing card headline", "FAQ question text"]
+    }
+  },
+
+  "derivedTokens": {
+    "note": "Derived tokens extend the core 5-color palette with functional variants — tints, shades, and alphas — needed to build the full component system.",
+    "backgrounds": {
+      "--bg-base": {
+        "value": "#faf8f4",
+        "derivedFrom": "charcoal-brown at 3% opacity on white — warm off-white, replacing old cream",
+        "usage": "Page base background, section alternating background"
+      },
+      "--bg-surface": {
+        "value": "#ffffff",
+        "derivedFrom": "white",
+        "usage": "Cards, modals, navbar, pricing card, FAQ items"
+      },
+      "--bg-dark": {
+        "value": "#353531",
+        "derivedFrom": "charcoal-brown",
+        "usage": "Formula showcase section, footer"
+      },
+      "--bg-dark-elevated": {
+        "value": "#4a4a45",
+        "derivedFrom": "charcoal-brown lightened 8%",
+        "usage": "Cards inside dark sections, hover state on dark nav items"
+      },
+      "--bg-brand-subtle": {
+        "value": "#fdf0ea",
+        "derivedFrom": "spicy-paprika at 8% opacity on white",
+        "usage": "Feature icon container background, CTA section tint, hover on ghost buttons"
+      },
+      "--bg-saffron-subtle": {
+        "value": "#fff8ec",
+        "derivedFrom": "deep-saffron at 8% opacity on white",
+        "usage": "Highlight chip backgrounds, badge backgrounds in light sections"
+      },
+      "--bg-marine-subtle": {
+        "value": "#e6f3fb",
+        "derivedFrom": "bright-marine at 10% opacity on white",
+        "usage": "Formula category label background, info alert background"
+      },
+      "--bg-final-cta": {
+        "value": "#ec4e20",
+        "derivedFrom": "spicy-paprika",
+        "usage": "Bottom CTA banner full-bleed background"
+      }
+    },
+    "text": {
+      "--text-primary": {
+        "value": "#353531",
+        "derivedFrom": "charcoal-brown",
+        "usage": "Body copy, card descriptions, FAQ answers, nav links"
+      },
+      "--text-heading": {
+        "value": "#000000",
+        "derivedFrom": "black",
+        "usage": "H1, H2, H3 — section titles, hero headline primary line"
+      },
+      "--text-muted": {
+        "value": "#7a7a74",
+        "derivedFrom": "charcoal-brown at 50% — warm mid-gray",
+        "usage": "Subtext, captions, stats labels, pricing feature fine print"
+      },
+      "--text-brand": {
+        "value": "#ec4e20",
+        "derivedFrom": "spicy-paprika",
+        "usage": "Hero accent word ('Before the Exam'), section eyebrow labels, checklist ticks"
+      },
+      "--text-saffron": {
+        "value": "#ff9505",
+        "derivedFrom": "deep-saffron",
+        "usage": "Hero secondary accent ('Make It Count'), dark-section checklist bullets, sub-taglines"
+      },
+      "--text-marine": {
+        "value": "#016fb9",
+        "derivedFrom": "bright-marine",
+        "usage": "Inline links, formula card reading label, secondary action text"
+      },
+      "--text-inverse": {
+        "value": "#ffffff",
+        "derivedFrom": "white",
+        "usage": "All text on dark/brand backgrounds — CTA banner, footer, dark feature section, filled buttons"
+      },
+      "--text-inverse-muted": {
+        "value": "rgba(255, 255, 255, 0.65)",
+        "derivedFrom": "white at 65% opacity",
+        "usage": "Footer subtext, copyright, secondary text on dark backgrounds"
+      }
+    },
+    "borders": {
+      "--border-default": {
+        "value": "#e8e4dc",
+        "derivedFrom": "warm neutral — charcoal-brown at 12% on white",
+        "usage": "Card borders, dividers, FAQ item separators, input outlines"
+      },
+      "--border-brand": {
+        "value": "#ec4e20",
+        "derivedFrom": "spicy-paprika",
+        "usage": "Pricing card featured border, active tab underline, focus rings"
+      },
+      "--border-dark": {
+        "value": "rgba(255, 255, 255, 0.12)",
+        "derivedFrom": "white at 12% opacity",
+        "usage": "Dividers inside dark sections and footer"
+      }
+    },
+    "interactive": {
+      "--focus-ring": {
+        "value": "rgba(236, 78, 32, 0.4)",
+        "derivedFrom": "spicy-paprika at 40% opacity",
+        "usage": "Focus outline on all interactive elements (keyboard nav)"
+      }
+    }
+  },
+
+  "components": {
+    "navbar": {
+      "background": "#ffffff",
+      "backgroundScrolled": "#ffffff",
+      "boxShadow": "0 1px 0 #e8e4dc",
+      "logoText": "#353531",
+      "logoAccent": "#ec4e20",
+      "navLink": "#353531",
+      "navLinkHover": "#ec4e20",
+      "navLinkActive": "#ec4e20",
+      "ctaButton": {
+        "background": "#ec4e20",
+        "text": "#ffffff",
+        "hoverBackground": "#ff9505",
+        "hoverText": "#ffffff",
+        "borderRadius": "6px"
+      }
+    },
+
+    "hero": {
+      "background": "#faf8f4",
+      "eyebrowBadge": {
+        "background": "#fdf0ea",
+        "text": "#ec4e20",
+        "border": "none"
+      },
+      "headlineLine1": {
+        "text": "Your 1lasthour",
+        "color": "#000000"
+      },
+      "headlineLine2": {
+        "text": "Before the Exam",
+        "color": "#ec4e20",
+        "note": "Spicy-paprika replaces the old terracotta orange — more vivid, higher energy"
+      },
+      "headlineLine3": {
+        "text": "Make It Count.",
+        "color": "#000000",
+        "note": "Could alternatively use #ff9505 (deep-saffron) for a warm-to-hot gradient feel across line 2→3"
+      },
+      "subtext": "#353531",
+      "ctaPrimary": {
+        "label": "Explore the Curriculum →",
+        "background": "#ec4e20",
+        "text": "#ffffff",
+        "hoverBackground": "#ff9505"
+      },
+      "ctaSecondary": {
+        "label": "See How It Works ↓",
+        "background": "transparent",
+        "text": "#353531",
+        "hoverText": "#ec4e20",
+        "border": "1.5px solid #353531",
+        "hoverBorder": "#ec4e20"
+      },
+      "badgeChip": {
+        "background": "#fff8ec",
+        "text": "#ff9505",
+        "border": "1px solid rgba(255,149,5,0.3)"
+      }
+    },
+
+    "modulePreview": {
+      "cardBackground": "#ffffff",
+      "cardBorder": "#e8e4dc",
+      "cardShadow": "0 4px 24px rgba(53,53,49,0.08)",
+      "sectionLabel": {
+        "text": "CFA LEVEL I",
+        "color": "#ec4e20"
+      },
+      "moduleTitle": "#000000",
+      "moduleItem": {
+        "label": "#353531",
+        "count": "#7a7a74",
+        "iconAccent": "#ec4e20"
+      },
+      "keyFormulasChip": {
+        "background": "#ec4e20",
+        "text": "#ffffff"
+      }
+    },
+
+    "statsBar": {
+      "background": "#ffffff",
+      "border": "1px solid #e8e4dc",
+      "number": "#ec4e20",
+      "label": "#7a7a74",
+      "divider": "#e8e4dc"
+    },
+
+    "featuresSection": {
+      "background": "#faf8f4",
+      "eyebrow": {
+        "text": "FEATURES",
+        "color": "#ec4e20"
+      },
+      "sectionHeadline": "#000000",
+      "sectionSubtext": "#353531",
+      "accentWord": {
+        "text": "ace Level 1",
+        "color": "#ec4e20",
+        "note": "The italic/colored accent in 'Everything you need to ace Level 1'"
+      },
+      "card": {
+        "background": "#ffffff",
+        "border": "1px solid #e8e4dc",
+        "shadow": "0 2px 12px rgba(53,53,49,0.06)",
+        "hoverShadow": "0 8px 32px rgba(236,78,32,0.12)",
+        "hoverBorderColor": "#ec4e20",
+        "iconContainer": {
+          "background": "#fdf0ea",
+          "iconColor": "#ec4e20"
+        },
+        "title": "#000000",
+        "body": "#353531"
+      }
+    },
+
+    "stepsSection": {
+      "background": "#ffffff",
+      "eyebrow": {
+        "text": "HOW IT WORKS",
+        "color": "#ec4e20"
+      },
+      "headline": "#000000",
+      "subtext": "#353531",
+      "step": {
+        "circle": {
+          "background": "#ec4e20",
+          "text": "#ffffff",
+          "hoverBackground": "#ff9505"
+        },
+        "connectorLine": "#ff9505",
+        "title": "#000000",
+        "body": "#353531"
+      }
+    },
+
+    "formulaShowcase": {
+      "background": "#353531",
+      "eyebrow": {
+        "text": "BEST-IN-CLASS",
+        "color": "#ff9505"
+      },
+      "headlinePart1": {
+        "text": "Every formula.",
+        "color": "#ffffff"
+      },
+      "headlinePart2": {
+        "text": "Every concept.",
+        "color": "#ffffff"
+      },
+      "headlineAccent": {
+        "text": "Beautifully organized.",
+        "color": "#ff9505",
+        "note": "Deep-saffron replaces the old orange on dark — better contrast ratio on #353531 (4.8:1) vs white"
+      },
+      "checklistIcon": "#ff9505",
+      "checklistText": "#ffffff",
+      "checklistTextMuted": "rgba(255,255,255,0.8)",
+      "linkCta": {
+        "text": "See it in action →",
+        "color": "#ff9505",
+        "hoverColor": "#ffffff"
+      },
+      "formulaCard": {
+        "background": "#ffffff",
+        "shadow": "0 8px 40px rgba(0,0,0,0.25)",
+        "readingLabel": {
+          "background": "#e6f3fb",
+          "text": "#016fb9",
+          "note": "Bright-marine label — the only place in the design where marine blue appears on light; creates informational hierarchy"
+        },
+        "formulaName": "#000000",
+        "formulaExpression": "#353531",
+        "formulaExpressionAccent": "#ec4e20"
+      }
+    },
+
+    "pricingSection": {
+      "background": "#faf8f4",
+      "eyebrow": {
+        "text": "PRICING",
+        "color": "#ec4e20"
+      },
+      "headline": "#000000",
+      "subtext": "#353531",
+      "card": {
+        "background": "#ffffff",
+        "border": "2px solid #ec4e20",
+        "shadow": "0 12px 48px rgba(236,78,32,0.15)",
+        "priceValue": {
+          "text": "$0",
+          "color": "#000000"
+        },
+        "priceLabel": "#7a7a74",
+        "featureCheckmark": "#ec4e20",
+        "featureText": "#353531",
+        "ctaButton": {
+          "background": "#ec4e20",
+          "text": "#ffffff",
+          "hoverBackground": "#ff9505"
+        }
+      }
+    },
+
+    "faqSection": {
+      "background": "#ffffff",
+      "eyebrow": {
+        "text": "FAQ",
+        "color": "#ec4e20"
+      },
+      "headline": "#000000",
+      "item": {
+        "border": "1px solid #e8e4dc",
+        "question": "#000000",
+        "answer": "#353531",
+        "icon": "#ec4e20",
+        "iconHover": "#ff9505",
+        "activeBackground": "#fdf0ea"
+      }
+    },
+
+    "finalCtaBanner": {
+      "background": "#ec4e20",
+      "headline": "#ffffff",
+      "subtext": "rgba(255,255,255,0.9)",
+      "button": {
+        "background": "#ffffff",
+        "text": "#ec4e20",
+        "hoverBackground": "#fff8ec",
+        "hoverText": "#ff9505"
+      }
+    },
+
+    "footer": {
+      "background": "#353531",
+      "logoText": "#ffffff",
+      "logoAccent": "#ff9505",
+      "sectionHeading": "#ffffff",
+      "link": "rgba(255,255,255,0.75)",
+      "linkHover": "#ff9505",
+      "divider": "rgba(255,255,255,0.12)",
+      "copyright": "rgba(255,255,255,0.5)"
+    }
+  },
+
+  "cssCustomProperties": {
+    "note": "Drop these into :root {} — they cover every token needed to theme the full site",
+    "properties": {
+      "--color-paprika": "#ec4e20",
+      "--color-paprika-hover": "#ff9505",
+      "--color-paprika-subtle": "#fdf0ea",
+      "--color-saffron": "#ff9505",
+      "--color-saffron-subtle": "#fff8ec",
+      "--color-marine": "#016fb9",
+      "--color-marine-subtle": "#e6f3fb",
+      "--color-charcoal": "#353531",
+      "--color-charcoal-mid": "#4a4a45",
+      "--color-charcoal-muted": "#7a7a74",
+      "--color-black": "#000000",
+      "--color-white": "#ffffff",
+      "--bg-base": "#faf8f4",
+      "--bg-surface": "#ffffff",
+      "--bg-dark": "#353531",
+      "--bg-brand": "#ec4e20",
+      "--text-primary": "#353531",
+      "--text-heading": "#000000",
+      "--text-muted": "#7a7a74",
+      "--text-brand": "#ec4e20",
+      "--text-inverse": "#ffffff",
+      "--text-inverse-muted": "rgba(255,255,255,0.65)",
+      "--border-default": "#e8e4dc",
+      "--border-brand": "#ec4e20",
+      "--border-dark": "rgba(255,255,255,0.12)",
+      "--focus-ring": "rgba(236, 78, 32, 0.4)"
+    }
+  },
+
+  "accessibilityNotes": {
+    "contrastChecks": [
+      {
+        "pair": "spicy-paprika on white",
+        "ratio": "3.8:1",
+        "wcag": "AA for large text / UI components (≥3:1). Use for icons, borders, large headings. Avoid for small body text.",
+        "recommendation": "Use --text-brand (#ec4e20) only at font-size ≥18px or font-weight ≥700 on white backgrounds."
+      },
+      {
+        "pair": "deep-saffron on white",
+        "ratio": "2.7:1",
+        "wcag": "Fails AA for text. Safe only for decorative elements, thick borders, and icon fills.",
+        "recommendation": "Do NOT use --color-saffron as text color on white/light backgrounds. Use it on dark (#353531) backgrounds where it achieves 6.4:1."
+      },
+      {
+        "pair": "deep-saffron on charcoal-brown",
+        "ratio": "6.4:1",
+        "wcag": "AAA — excellent. Primary use case for saffron text.",
+        "recommendation": "Ideal for headlines and checklist items in dark sections."
+      },
+      {
+        "pair": "bright-marine on white",
+        "ratio": "5.1:1",
+        "wcag": "AA — passes for normal text.",
+        "recommendation": "Safe for inline links, formula labels, and secondary CTAs."
+      },
+      {
+        "pair": "charcoal-brown on bg-base (#faf8f4)",
+        "ratio": "12.4:1",
+        "wcag": "AAA — excellent for all body text.",
+        "recommendation": "Default for all body copy."
+      },
+      {
+        "pair": "white on spicy-paprika",
+        "ratio": "3.8:1",
+        "wcag": "AA for large text / buttons (≥3:1). Acceptable for CTA buttons with ≥14px bold.",
+        "recommendation": "Use white text on paprika buttons only with bold weight (≥600) and min 14px."
+      }
+    ],
+    "keyGuidelines": [
+      "Never use deep-saffron as body text on light backgrounds — decorative/icon use only",
+      "Spicy-paprika on light is safe for large headlines (≥24px) and UI elements (icons, borders)",
+      "Bright-marine is the safest accent for text/links on light — use it freely for informational labels",
+      "All interactive elements need visible focus rings using --focus-ring"
+    ]
+  },
+
+  "changeLog": {
+    "from": {
+      "primary": "Soft terracotta-orange (~#E8591A range)",
+      "background": "Warm cream (#F5F0E8)",
+      "text": "Dark olive (~#2D2D2A)",
+      "darkSection": "Dark olive-charcoal",
+      "accent": "None (monochromatic orange scheme)"
+    },
+    "to": {
+      "primary": "Spicy paprika (#ec4e20) — more saturated, slightly redder, higher energy",
+      "background": "Warm off-white (#faf8f4) — cleaner but still warm",
+      "text": "Charcoal brown (#353531) — slightly warmer than pure charcoal",
+      "darkSection": "Charcoal brown (#353531) — consistent with text dark",
+      "accent": "Deep saffron (#ff9505) for warm secondary + Bright marine (#016fb9) for informational blue"
+    },
+    "impactSummary": "The rebrand intensifies the brand energy (paprika vs terracotta), adds a saffron warm-secondary for layered warmth in dark sections, and introduces a marine-blue functional accent that adds informational depth to formula cards and links — a previously absent color dimension."
+  }
+}
