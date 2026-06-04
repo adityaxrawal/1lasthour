@@ -2,8 +2,7 @@ import type { FastifyRequest, FastifyReply } from 'fastify';
 import { z } from 'zod';
 import { modulesService } from '../services/modules.service.js';
 import { ValidationError } from '../errors/errors.js';
-import { watermarkContent, generateSessionId, logWatermarkSession } from '../lib/watermark.js';
-import { encryptPayload } from '../lib/encrypt.js';
+import { sendSecureResponse } from '../lib/response.js';
 
 const paramsSchema = z.object({
   topicId: z.string().regex(/^[a-z0-9-]+$/, 'Invalid topic ID format'),
@@ -35,20 +34,6 @@ export const modulesController = {
       level: query.data.level,
     });
 
-    // Watermark content so each session's copy is uniquely traceable
-    const sessionId = generateSessionId(req);
-    const watermarked = watermarkContent(module, sessionId);
-    await logWatermarkSession(sessionId, req);
-
-    const responseBody = { data: watermarked };
-
-    // Encrypt if session key header is present
-    const sessionKey = req.headers['x-session-key'] as string | undefined;
-    if (sessionKey) {
-      const encrypted = await encryptPayload(responseBody, sessionKey);
-      return reply.code(200).send(encrypted);
-    }
-
-    return reply.code(200).send(responseBody);
+    return sendSecureResponse(req, reply, module);
   },
 };

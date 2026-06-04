@@ -2,8 +2,7 @@ import type { FastifyRequest, FastifyReply } from 'fastify';
 import { z } from 'zod';
 import { topicsService } from '../services/topics.service.js';
 import { ValidationError } from '../errors/errors.js';
-import { watermarkContent, generateSessionId, logWatermarkSession } from '../lib/watermark.js';
-import { encryptPayload } from '../lib/encrypt.js';
+import { sendSecureResponse } from '../lib/response.js';
 
 const levelSchema = z.object({
   level: z.coerce.number().int().min(1).max(3),
@@ -24,25 +23,7 @@ export const topicsController = {
     }
 
     const topics = await topicsService.list(parsed.data);
-
-    // Watermark content so each session's copy is uniquely traceable
-    const sessionId = generateSessionId(req);
-    const watermarked = watermarkContent(topics, sessionId);
-    await logWatermarkSession(sessionId, req);
-
-    const responseBody = {
-      data: watermarked,
-      meta: { total: topics.length, level: parsed.data.level },
-    };
-
-    // Encrypt if session key header is present
-    const sessionKey = req.headers['x-session-key'] as string | undefined;
-    if (sessionKey) {
-      const encrypted = await encryptPayload(responseBody, sessionKey);
-      return reply.code(200).send(encrypted);
-    }
-
-    return reply.code(200).send(responseBody);
+    return sendSecureResponse(req, reply, topics, { total: topics.length, level: parsed.data.level });
   },
 
   async getById(req: FastifyRequest, reply: FastifyReply) {
@@ -61,20 +42,6 @@ export const topicsController = {
       level: query.data.level,
     });
 
-    // Watermark content so each session's copy is uniquely traceable
-    const sessionId = generateSessionId(req);
-    const watermarked = watermarkContent(topic, sessionId);
-    await logWatermarkSession(sessionId, req);
-
-    const responseBody = { data: watermarked };
-
-    // Encrypt if session key header is present
-    const sessionKey = req.headers['x-session-key'] as string | undefined;
-    if (sessionKey) {
-      const encrypted = await encryptPayload(responseBody, sessionKey);
-      return reply.code(200).send(encrypted);
-    }
-
-    return reply.code(200).send(responseBody);
+    return sendSecureResponse(req, reply, topic);
   },
 };

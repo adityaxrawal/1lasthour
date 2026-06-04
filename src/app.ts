@@ -9,6 +9,7 @@ import { logger as pinoLogger } from './utils/logger.js';
 import { isRedisConnected, redis } from './config/redis.js';
 import { registerRoutes } from './routes/index.js';
 import { globalErrorHandler } from './errors/errorHandler.js';
+import { rateLimitErrorBuilder } from './utils/rateLimit.js';
 import crypto from 'crypto';
 
 export async function buildApp(): Promise<FastifyInstance> {
@@ -81,12 +82,7 @@ export async function buildApp(): Promise<FastifyInstance> {
     redis: env.NODE_ENV === 'test' || !isRedisConnected ? undefined : redis,
     keyGenerator: (req) => req.ip,
     allowList: (req) => req.method === 'OPTIONS',
-    errorResponseBuilder: () => ({
-      statusCode: 429,
-      error: 'RATE_LIMIT_EXCEEDED',
-      message: 'Too many requests. Please slow down.',
-      timestamp: new Date().toISOString(),
-    }),
+    errorResponseBuilder: rateLimitErrorBuilder,
   });
 
   // Cookies

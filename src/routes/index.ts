@@ -7,6 +7,7 @@ import { sessionRoutes } from './session.js';
 import { honeypotRoutes, blockedIPs } from './honeypot.js';
 
 import fastifyRateLimit from '@fastify/rate-limit';
+import { rateLimitErrorBuilder } from '../utils/rateLimit.js';
 
 const ROBOTS_TXT = `User-agent: *
 Disallow: /api/
@@ -63,12 +64,7 @@ export async function registerRoutes(app: FastifyInstance) {
           timeWindow: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000'),
           keyGenerator: (req) => req.ip,
           allowList: (req) => req.method === 'OPTIONS',
-          errorResponseBuilder: () => ({
-            statusCode: 429,
-            error: 'RATE_LIMIT_EXCEEDED',
-            message: 'Too many requests. Please slow down.',
-            timestamp: new Date().toISOString(),
-          }),
+          errorResponseBuilder: rateLimitErrorBuilder,
         });
 
         await cfaScope.register(topicsRoutes);
