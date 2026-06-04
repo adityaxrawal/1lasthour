@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import { CalendarDays, CreditCard, Clock, AlertCircle, Trophy, ExternalLink } from 'lucide-react';
+import React, { memo } from 'react';
 
 const TIMELINE = [
   {

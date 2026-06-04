@@ -1,17 +1,18 @@
 import React, { memo, useCallback } from 'react';
+
 import { GlobalHeader } from '@/components/layout/GlobalHeader';
 import { Footer } from '@/features/landing/components';
 import { LANDING_NAV_LINKS } from '@/features/landing/constants/landingConstants';
 
-import { HeroSection } from './components/HeroSection';
 import { AtAGlanceSection } from './components/AtAGlanceSection';
-import { ExamStructureSection } from './components/ExamStructureSection';
-import { QuestionFormatSection } from './components/QuestionFormatSection';
-import { TopicWeightsSection } from './components/TopicWeightsSection';
-import { PassingScoreSection } from './components/PassingScoreSection';
-import { RegistrationTimelineSection } from './components/RegistrationTimelineSection';
 import { DifficultySection } from './components/DifficultySection';
+import { ExamStructureSection } from './components/ExamStructureSection';
+import { HeroSection } from './components/HeroSection';
+import { PassingScoreSection } from './components/PassingScoreSection';
+import { QuestionFormatSection } from './components/QuestionFormatSection';
+import { RegistrationTimelineSection } from './components/RegistrationTimelineSection';
 import { SuccessCTABanner } from './components/SuccessCTABanner';
+import { TopicWeightsSection } from './components/TopicWeightsSection';
 
 const AboutExamPage = memo(function AboutExamPage() {
   const scrollTo = useCallback((id) => {

@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import { Sun, Moon, ChevronDown, FileText } from 'lucide-react';
+import React, { memo } from 'react';
 
 const SessionCard = memo(function SessionCard({ session, icon: Icon, iconBg, iconColor }) {
   return (

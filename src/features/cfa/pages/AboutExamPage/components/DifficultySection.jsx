@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import { BookOpen, Network, Clock, Target, Star, FileText, CheckCircle2, BarChart2 } from 'lucide-react';
+import React, { memo } from 'react';
 
 const DIFFICULTY_REASONS = [
   {

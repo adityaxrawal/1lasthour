@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import React, { memo } from 'react';
 
 const TOPICS = [
   { id: '01', name: 'Ethical & Professional Standards', weight: '15 – 20%', score: 90, tier: 'high' },

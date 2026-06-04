@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import { Trophy, ArrowRight } from 'lucide-react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 export const SuccessCTABanner = memo(function SuccessCTABanner() {
