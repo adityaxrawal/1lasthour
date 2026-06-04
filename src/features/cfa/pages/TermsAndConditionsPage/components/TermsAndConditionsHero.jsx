@@ -1,5 +1,5 @@
-import React from 'react';
 import { Shield, FileText, CheckCircle } from 'lucide-react';
+import React from 'react';
 
 export function TermsAndConditionsHero() {
   return (
@@ -30,10 +30,10 @@ export function TermsAndConditionsHero() {
           {/* Soft circular background shape */}
           <div 
             className="absolute w-[280px] h-[280px] md:w-[360px] md:h-[360px] rounded-full opacity-60 mix-blend-multiply filter blur-3xl bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] dark:from-blue-900/20 dark:to-indigo-900/20"
-          ></div>
+           />
           <div 
             className="absolute w-[240px] h-[240px] md:w-[300px] md:h-[300px] rounded-full right-0 top-0 opacity-40 mix-blend-multiply filter blur-2xl bg-gradient-to-br from-[#ffe4d6] to-[#fff0e6] dark:from-orange-900/20 dark:to-red-900/20"
-          ></div>
+           />
 
           {/* Floating Terms & Conditions document card */}
           <div 
@@ -45,25 +45,25 @@ export function TermsAndConditionsHero() {
                 <FileText size={24} strokeWidth={2.5} />
               </div>
               <div className="flex flex-col">
-                <div className="h-2.5 w-24 bg-[#e2e8f0] dark:bg-slate-600 rounded-full mb-2"></div>
-                <div className="h-2 w-16 bg-[#f1f5f9] dark:bg-slate-700 rounded-full"></div>
+                <div className="h-2.5 w-24 bg-[#e2e8f0] dark:bg-slate-600 rounded-full mb-2" />
+                <div className="h-2 w-16 bg-[#f1f5f9] dark:bg-slate-700 rounded-full" />
               </div>
             </div>
             
             <div className="space-y-3">
-              <div className="h-2 w-full bg-[#f1f5f9] dark:bg-slate-700 rounded-full"></div>
-              <div className="h-2 w-[90%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full"></div>
-              <div className="h-2 w-[95%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full"></div>
-              <div className="h-2 w-[80%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full"></div>
-              <div className="h-2 w-[85%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full"></div>
+              <div className="h-2 w-full bg-[#f1f5f9] dark:bg-slate-700 rounded-full" />
+              <div className="h-2 w-[90%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full" />
+              <div className="h-2 w-[95%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full" />
+              <div className="h-2 w-[80%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full" />
+              <div className="h-2 w-[85%] bg-[#f1f5f9] dark:bg-slate-700 rounded-full" />
             </div>
 
             <div className="mt-8 flex justify-between items-center">
               <div className="flex gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#f8fafc] dark:bg-slate-600 border-2 border-white dark:border-slate-800 shadow-sm z-20"></div>
-                <div className="w-8 h-8 rounded-full bg-[#f1f5f9] dark:bg-slate-700 border-2 border-white dark:border-slate-800 shadow-sm -ml-4 z-10"></div>
+                <div className="w-8 h-8 rounded-full bg-[#f8fafc] dark:bg-slate-600 border-2 border-white dark:border-slate-800 shadow-sm z-20" />
+                <div className="w-8 h-8 rounded-full bg-[#f1f5f9] dark:bg-slate-700 border-2 border-white dark:border-slate-800 shadow-sm -ml-4 z-10" />
               </div>
-              <div className="h-6 w-20 bg-[#f4f7ff] dark:bg-slate-700 rounded-md"></div>
+              <div className="h-6 w-20 bg-[#f4f7ff] dark:bg-slate-700 rounded-md" />
             </div>
           </div>
 

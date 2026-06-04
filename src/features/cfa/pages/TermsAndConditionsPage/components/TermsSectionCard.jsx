@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { ChevronDown, Monitor, ShieldCheck, Lock, FileText, User, PieChart, AlertTriangle, Scale, RefreshCw, Mail } from 'lucide-react';
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import clsx from 'clsx';
+import { ChevronDown, Monitor, ShieldCheck, Lock, FileText, User, PieChart, AlertTriangle, Scale, RefreshCw, Mail } from 'lucide-react';
+import React, { useState } from 'react';
 
 const iconMap = {
   Monitor: Monitor,

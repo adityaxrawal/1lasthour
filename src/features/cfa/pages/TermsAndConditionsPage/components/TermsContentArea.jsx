@@ -1,7 +1,10 @@
-import React from 'react';
 import { Calendar } from 'lucide-react';
-import { TermsSectionCard } from './TermsSectionCard';
+import React from 'react';
+
 import { termsData } from '../data/termsData.jsx';
+
+import { TermsSectionCard } from './TermsSectionCard';
+
 
 export function TermsContentArea() {
   const currentDate = new Date().toLocaleDateString('en-US', {

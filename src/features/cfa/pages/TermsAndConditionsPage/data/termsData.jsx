@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 
 export const termsData = [
@@ -119,7 +120,7 @@ export const termsData = [
     content: (
       <div className="space-y-4">
         <p>
-          The Service is provided on an "AS IS" and "AS AVAILABLE" basis. 1LastHour makes no representations or warranties of any kind, express or implied, as to the operation of their services, or the information, content or materials included therein.
+          The Service is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. 1LastHour makes no representations or warranties of any kind, express or implied, as to the operation of their services, or the information, content or materials included therein.
         </p>
         <p>
           You expressly agree that your use of the Service is at your sole risk.

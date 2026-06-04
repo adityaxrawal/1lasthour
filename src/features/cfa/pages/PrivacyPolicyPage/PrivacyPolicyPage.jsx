@@ -1,10 +1,11 @@
 import React, { memo, useEffect } from 'react';
+
 import { GlobalHeader } from '@/components/layout/GlobalHeader';
 import { Footer } from '@/features/landing/components';
 
-import { PrivacyPolicyHero } from './components/PrivacyPolicyHero';
 import { PrivacyPolicyAccordion } from './components/PrivacyPolicyAccordion';
 import { PrivacyPolicyCTA } from './components/PrivacyPolicyCTA';
+import { PrivacyPolicyHero } from './components/PrivacyPolicyHero';
 
 const PrivacyPolicyPage = memo(function PrivacyPolicyPage() {
   useEffect(() => {

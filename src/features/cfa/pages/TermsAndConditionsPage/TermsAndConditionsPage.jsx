@@ -1,10 +1,11 @@
 import React, { memo, useEffect } from 'react';
+
 import { GlobalHeader } from '@/components/layout/GlobalHeader';
 import { Footer } from '@/features/landing/components';
 
+import { TermsAndConditionsCTA } from './components/TermsAndConditionsCTA';
 import { TermsAndConditionsHero } from './components/TermsAndConditionsHero';
 import { TermsContentArea } from './components/TermsContentArea';
-import { TermsAndConditionsCTA } from './components/TermsAndConditionsCTA';
 
 const TermsAndConditionsPage = memo(function TermsAndConditionsPage() {
   useEffect(() => {

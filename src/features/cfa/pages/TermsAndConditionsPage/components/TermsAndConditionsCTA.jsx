@@ -1,5 +1,6 @@
-import React from 'react';
+/* eslint-disable react/no-unescaped-entities */
 import { Trophy, ArrowRight } from 'lucide-react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export function TermsAndConditionsCTA() {
@@ -9,8 +10,8 @@ export function TermsAndConditionsCTA() {
         className="rounded-[24px] overflow-hidden p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 relative bg-[var(--color-highlight)]"
       >
         {/* Soft background glow circles */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-10 rounded-full blur-2xl transform -translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-10 rounded-full blur-2xl transform -translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
         <div className="flex flex-col md:flex-row items-center lg:items-start text-center md:text-left gap-8 z-10 w-full lg:w-auto">
           {/* Trophy Icon */}

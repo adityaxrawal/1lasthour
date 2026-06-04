@@ -1,4 +1,3 @@
-import React, { memo, useState } from 'react';
 import {
   User,
   ClipboardList,
@@ -12,60 +11,68 @@ import {
   Globe,
   ChevronDown
 } from 'lucide-react';
+import React, { memo, useState } from 'react';
 
+const ListContent = ({ description, items, postDescription }) => (
+  <div className="space-y-4">
+    <p>{description}</p>
+    <ul className="list-disc pl-5 space-y-2">
+      {items.map((item, idx) => (
+        <li key={idx}><strong>{item.title}:</strong> {item.text}</li>
+      ))}
+    </ul>
+    {postDescription && <p>{postDescription}</p>}
+  </div>
+);
+
+// noinspection DuplicatedCode
 const SECTIONS = [
   {
     id: 1,
     title: "Information We Collect",
-    icon: <User className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
-    content: (
-      <div className="space-y-4">
-        <p>We may collect the following types of information when you use 1LastHour:</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Personal Information:</strong> When you create an account, we may collect your name, email address, and other contact details.</li>
-          <li><strong>Study Data:</strong> We track your progress through the CFA Level 1 Curriculum, including modules completed, quiz scores, and study habits to provide personalized analytics.</li>
-          <li><strong>Financial Data:</strong> If you use our Financial Tracking Dashboard, you may input personal financial data such as expenses, income, and investments. This data is processed securely and is used solely to provide dashboard visualizations and tracking features to you.</li>
-          <li><strong>Usage Data & Device Information:</strong> We automatically collect data about your interaction with our platform, such as your IP address, browser type, device information, and pages visited.</li>
-        </ul>
-      </div>
-    )
+    icon: User,
+    content: <ListContent 
+      description="We may collect the following types of information when you use 1LastHour:"
+      items={[
+        { title: "Personal Information", text: "When you create an account, we may collect your name, email address, and other contact details." },
+        { title: "Study Data", text: "We track your progress through the CFA Level 1 Curriculum, including modules completed, quiz scores, and study habits to provide personalized analytics." },
+        { title: "Financial Data", text: "If you use our Financial Tracking Dashboard, you may input personal financial data such as expenses, income, and investments. This data is processed securely and is used solely to provide dashboard visualizations and tracking features to you." },
+        { title: "Usage Data & Device Information", text: "We automatically collect data about your interaction with our platform, such as your IP address, browser type, device information, and pages visited." }
+      ]}
+    />
   },
   {
     id: 2,
     title: "How We Use Your Information",
-    icon: <ClipboardList className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
-    content: (
-      <div className="space-y-4">
-        <p>We use the collected information for various purposes, including:</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li><strong>To Provide and Maintain our Service:</strong> Ensuring the platform functions correctly, including the CFA curriculum browser and financial dashboard.</li>
-          <li><strong>To Personalize Your Experience:</strong> Saving your preferences (such as dark/light theme settings via local storage) and tailoring your study experience.</li>
-          <li><strong>To Improve our Platform:</strong> Analyzing usage patterns to enhance features, optimize performance, and develop new tools.</li>
-          <li><strong>To Communicate with You:</strong> Sending you updates, newsletters, security alerts, and support messages.</li>
-        </ul>
-      </div>
-    )
+    icon: ClipboardList,
+    content: <ListContent 
+      description="We use the collected information for various purposes, including:"
+      items={[
+        { title: "To Provide and Maintain our Service", text: "Ensuring the platform functions correctly, including the CFA curriculum browser and financial dashboard." },
+        { title: "To Personalize Your Experience", text: "Saving your preferences (such as dark/light theme settings via local storage) and tailoring your study experience." },
+        { title: "To Improve our Platform", text: "Analyzing usage patterns to enhance features, optimize performance, and develop new tools." },
+        { title: "To Communicate with You", text: "Sending you updates, newsletters, security alerts, and support messages." }
+      ]}
+    />
   },
   {
     id: 3,
     title: "Data Storage and Security",
-    icon: <ShieldCheck className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
-    content: (
-      <div className="space-y-4">
-        <p>The security of your data is important to us. We implement industry-standard security measures to protect your personal and financial information:</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Session Security:</strong> We use cryptographic signatures and fingerprint binding to ensure session-based API security and prevent unauthorized access.</li>
-          <li><strong>Local Storage:</strong> Non-sensitive preferences (like UI themes) are stored locally on your device for performance optimization.</li>
-          <li><strong>Encryption:</strong> We use secure protocols (HTTPS) to transmit data between your browser and our servers.</li>
-        </ul>
-        <p>While we strive to use commercially acceptable means to protect your personal data, no method of transmission over the Internet is 100% secure.</p>
-      </div>
-    )
+    icon: ShieldCheck,
+    content: <ListContent 
+      description="The security of your data is important to us. We implement industry-standard security measures to protect your personal and financial information:"
+      items={[
+        { title: "Session Security", text: "We use cryptographic signatures and fingerprint binding to ensure session-based API security and prevent unauthorized access." },
+        { title: "Local Storage", text: "Non-sensitive preferences (like UI themes) are stored locally on your device for performance optimization." },
+        { title: "Encryption", text: "We use secure protocols (HTTPS) to transmit data between your browser and our servers." }
+      ]}
+      postDescription="While we strive to use commercially acceptable means to protect your personal data, no method of transmission over the Internet is 100% secure."
+    />
   },
   {
     id: 4,
     title: "Cookies and Tracking Technologies",
-    icon: <Cookie className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    icon: Cookie,
     content: (
       <div className="space-y-4">
         <p>We use cookies, local storage, and similar tracking technologies to track activity on our platform and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies or local storage, some parts of our platform may not function properly.</p>
@@ -75,7 +82,7 @@ const SECTIONS = [
   {
     id: 5,
     title: "Third-Party Services",
-    icon: <Users className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    icon: Users,
     content: (
       <div className="space-y-4">
         <p>We may employ third-party companies and individuals to facilitate our Service, provide the Service on our behalf, perform Service-related services, or assist us in analyzing how our Service is used. These third parties have access to your personal data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
@@ -85,7 +92,7 @@ const SECTIONS = [
   {
     id: 6,
     title: "Your Data Protection Rights",
-    icon: <Lock className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    icon: Lock,
     content: (
       <div className="space-y-4">
         <p>Depending on your location, you may have the following rights regarding your personal data:</p>
@@ -107,7 +114,7 @@ const SECTIONS = [
   {
     id: 7,
     title: "Children's Privacy",
-    icon: <Baby className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    icon: Baby,
     content: (
       <div className="space-y-4">
         <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us.</p>
@@ -117,17 +124,17 @@ const SECTIONS = [
   {
     id: 8,
     title: "Changes to This Privacy Policy",
-    icon: <RefreshCw className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    icon: RefreshCw,
     content: (
       <div className="space-y-4">
-        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top. You are advised to review this Privacy Policy periodically for any changes.</p>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &quot;Effective Date&quot; at the top. You are advised to review this Privacy Policy periodically for any changes.</p>
       </div>
     )
   },
   {
     id: 9,
     title: "Contact Us",
-    icon: <Mail className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    icon: Mail,
     content: (
       <div className="space-y-4">
         <p>If you have any questions about this Privacy Policy, please contact us:</p>
@@ -187,7 +194,7 @@ const PrivacyPolicyAccordion = memo(function PrivacyPolicyAccordion() {
             >
               <div className="flex items-center gap-4">
                 <div className="hidden sm:flex w-12 h-12 rounded-xl bg-[#F8F9FD] dark:bg-slate-700 border border-[#E8ECF4] dark:border-slate-600 items-center justify-center flex-shrink-0 transition-colors duration-200">
-                  {section.icon}
+                  <section.icon className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />
                 </div>
                 <div className="w-7 h-7 rounded-full bg-[#1E4FCD] dark:bg-blue-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0 transition-colors duration-200">
                   {section.id}

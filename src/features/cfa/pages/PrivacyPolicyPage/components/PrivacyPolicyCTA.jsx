@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import { Trophy, ArrowRight } from 'lucide-react';
+import React, { memo } from 'react';
 
 const PrivacyPolicyCTA = memo(function PrivacyPolicyCTA() {
   return (
