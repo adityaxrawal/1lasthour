@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { useModuleQuery } from '@features/cfa/hooks/useModuleQuery';
 import { useTopicQuery } from '@features/cfa/hooks/useTopicQuery';
 import { useTopicsQuery } from '@features/cfa/hooks/useTopicsQuery';

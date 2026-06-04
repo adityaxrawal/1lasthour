@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import { LOSTabSection } from './LOSTabSection';
 import { LegacyModuleLayout } from './LegacyModuleLayout';

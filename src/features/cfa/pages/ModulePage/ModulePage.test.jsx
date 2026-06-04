@@ -1,7 +1,6 @@
-import React from 'react';
 import { render } from '@testing-library/react';
+import React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { MemoryRouter } from 'react-router-dom';
 
 import { ModulePage } from './ModulePage';
 import { useModulePage } from './useModulePage';

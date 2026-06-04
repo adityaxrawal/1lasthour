@@ -3,10 +3,10 @@ import React, { memo } from 'react';
 import { LoadingState, ErrorState, NotFoundState } from '@components/ui';
 
 import { ComingSoonPage } from './components/ComingSoonPage';
+import { MainContent } from './components/MainContent';
 import { ModuleBreadcrumbs } from './components/ModuleBreadcrumbs';
 import { ModuleHeader } from './components/ModuleHeader';
 import { ModuleSidebar } from './components/ModuleSidebar';
-import { MainContent } from './components/MainContent';
 import { useModulePage } from './useModulePage';
 
 // ─── Component ────────────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
-import { renderHook, act } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { renderHook } from '@testing-library/react';
 import * as routerDom from 'react-router-dom';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 // Mocks
 vi.mock('react-router-dom', () => ({
