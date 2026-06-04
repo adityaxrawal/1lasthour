@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+
 import { calculateZoom, calculateZoomIn, calculateZoomOut, calculatePan } from '../zoomPanHelpers';
 
 describe('zoomPanHelpers', () => {

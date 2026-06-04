@@ -34,7 +34,8 @@ export async function isHeadlessBrowser() {
   try {
     const perm = await navigator.permissions.query({ name: 'notifications' })
     if (perm.state === 'denied' && Notification.permission === 'default') return true
-  } catch (_) {
+  }  
+    catch (e) { // eslint-disable-line no-unused-vars
     // Some browsers don't support the Permissions API — not itself a bot signal
   }
 

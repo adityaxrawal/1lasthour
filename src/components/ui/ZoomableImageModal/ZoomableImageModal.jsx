@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { X } from 'lucide-react';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 
 import { useZoomPan } from '@/hooks/useZoomPan';
+
 import { ModalControls } from './components/ModalControls';
 
 const ModalToolbar = memo(function ModalToolbar({ onClose }) {

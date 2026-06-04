@@ -17,9 +17,10 @@
  */
 
 import React, { createContext, useContext, useState, useCallback } from 'react';
+
+import { THEME_CONSTANTS } from './themeConstants';
 import { getInitialTheme } from './themeUtils';
 import { useThemePersistence } from './useThemePersistence';
-import { THEME_CONSTANTS } from './themeConstants';
 
 const ThemeContext = createContext({
   theme: THEME_CONSTANTS.LIGHT,

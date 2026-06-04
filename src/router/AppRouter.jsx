@@ -2,11 +2,11 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Layout from '@/components/layout/Layout';
+import ScrollToTop from '@/components/layout/ScrollToTop';
+import { Loader } from '@/components/ui';
 import { useProtection } from '@/hooks/useProtection';
 import { enforceHumanBrowser } from '@/lib/botDetection';
-import { Loader } from '@/components/ui';
 
-import ScrollToTop from '@/components/layout/ScrollToTop';
 
 // Lazy-loaded pages — each imports directly for proper code splitting
 const LandingPage = lazy(() => import('@/features/landing/pages/LandingPage'));

@@ -1,7 +1,5 @@
-import { ArrowLeft, ChevronRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 

@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+
 import { groupResultsByType } from '../searchUtils';
 
 describe('groupResultsByType', () => {
