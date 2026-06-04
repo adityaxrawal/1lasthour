@@ -1,0 +1,9 @@
+export { CTABannerSection } from './CTABannerSection';
+export { FAQSection } from './FAQSection';
+export { FeaturesSection } from './FeaturesSection';
+export { HeroSection } from './HeroSection';
+export { HowItWorksSection } from './HowItWorksSection';
+export { Footer } from './Footer';
+export { PreviewSection } from './PreviewSection';
+export { PricingSection } from './PricingSection';
+export { StatsSection } from './StatsSection';

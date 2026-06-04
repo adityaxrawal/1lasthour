@@ -1,0 +1,221 @@
+import React, { memo, useState } from 'react';
+import {
+  User,
+  ClipboardList,
+  ShieldCheck,
+  Cookie,
+  Users,
+  Lock,
+  Baby,
+  RefreshCw,
+  Mail,
+  Globe,
+  ChevronDown
+} from 'lucide-react';
+
+const SECTIONS = [
+  {
+    id: 1,
+    title: "Information We Collect",
+    icon: <User className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>We may collect the following types of information when you use 1LastHour:</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li><strong>Personal Information:</strong> When you create an account, we may collect your name, email address, and other contact details.</li>
+          <li><strong>Study Data:</strong> We track your progress through the CFA Level 1 Curriculum, including modules completed, quiz scores, and study habits to provide personalized analytics.</li>
+          <li><strong>Financial Data:</strong> If you use our Financial Tracking Dashboard, you may input personal financial data such as expenses, income, and investments. This data is processed securely and is used solely to provide dashboard visualizations and tracking features to you.</li>
+          <li><strong>Usage Data & Device Information:</strong> We automatically collect data about your interaction with our platform, such as your IP address, browser type, device information, and pages visited.</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    id: 2,
+    title: "How We Use Your Information",
+    icon: <ClipboardList className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>We use the collected information for various purposes, including:</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li><strong>To Provide and Maintain our Service:</strong> Ensuring the platform functions correctly, including the CFA curriculum browser and financial dashboard.</li>
+          <li><strong>To Personalize Your Experience:</strong> Saving your preferences (such as dark/light theme settings via local storage) and tailoring your study experience.</li>
+          <li><strong>To Improve our Platform:</strong> Analyzing usage patterns to enhance features, optimize performance, and develop new tools.</li>
+          <li><strong>To Communicate with You:</strong> Sending you updates, newsletters, security alerts, and support messages.</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    id: 3,
+    title: "Data Storage and Security",
+    icon: <ShieldCheck className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>The security of your data is important to us. We implement industry-standard security measures to protect your personal and financial information:</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li><strong>Session Security:</strong> We use cryptographic signatures and fingerprint binding to ensure session-based API security and prevent unauthorized access.</li>
+          <li><strong>Local Storage:</strong> Non-sensitive preferences (like UI themes) are stored locally on your device for performance optimization.</li>
+          <li><strong>Encryption:</strong> We use secure protocols (HTTPS) to transmit data between your browser and our servers.</li>
+        </ul>
+        <p>While we strive to use commercially acceptable means to protect your personal data, no method of transmission over the Internet is 100% secure.</p>
+      </div>
+    )
+  },
+  {
+    id: 4,
+    title: "Cookies and Tracking Technologies",
+    icon: <Cookie className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>We use cookies, local storage, and similar tracking technologies to track activity on our platform and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies or local storage, some parts of our platform may not function properly.</p>
+      </div>
+    )
+  },
+  {
+    id: 5,
+    title: "Third-Party Services",
+    icon: <Users className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>We may employ third-party companies and individuals to facilitate our Service, provide the Service on our behalf, perform Service-related services, or assist us in analyzing how our Service is used. These third parties have access to your personal data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+      </div>
+    )
+  },
+  {
+    id: 6,
+    title: "Your Data Protection Rights",
+    icon: <Lock className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ul className="list-disc pl-5 space-y-2">
+            <li>The right to access, update, or delete the information we have on you.</li>
+            <li>The right of rectification: You have the right to have your information rectified if that information is inaccurate or incomplete.</li>
+            <li>The right to object: You have the right to object to our processing of your personal data.</li>
+          </ul>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>The right of restriction: You have the right to request that we restrict the processing of your personal information.</li>
+            <li>The right to data portability: You have the right to be provided with a copy of the information we have on you in a structured, human-readable format.</li>
+            <li>The right to withdraw consent: You have the right to withdraw your consent at any time where 1LastHour relied on your consent to process your personal information.</li>
+          </ul>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 7,
+    title: "Children's Privacy",
+    icon: <Baby className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us.</p>
+      </div>
+    )
+  },
+  {
+    id: 8,
+    title: "Changes to This Privacy Policy",
+    icon: <RefreshCw className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top. You are advised to review this Privacy Policy periodically for any changes.</p>
+      </div>
+    )
+  },
+  {
+    id: 9,
+    title: "Contact Us",
+    icon: <Mail className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />,
+    content: (
+      <div className="space-y-4">
+        <p>If you have any questions about this Privacy Policy, please contact us:</p>
+        <div className="flex flex-col md:flex-row gap-6 mt-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-[#F8F9FD] dark:bg-slate-700 flex items-center justify-center">
+              <Mail className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm text-[#666666] dark:text-slate-400">By email:</span>
+              <a href="mailto:support@1lasthour.com" className="font-medium text-[#1E4FCD] dark:text-blue-400 hover:underline">support@1lasthour.com</a>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-[#F8F9FD] dark:bg-slate-700 flex items-center justify-center">
+              <Globe className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm text-[#666666] dark:text-slate-400">By visiting our website:</span>
+              <a href="https://1lasthour.com" target="_blank" rel="noopener noreferrer" className="font-medium text-[#1E4FCD] dark:text-blue-400 hover:underline">1lasthour.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+];
+
+const PrivacyPolicyAccordion = memo(function PrivacyPolicyAccordion() {
+  const [openSectionIds, setOpenSectionIds] = useState(() => new Set(SECTIONS.map(s => s.id)));
+
+  const toggleSection = (id) => {
+    setOpenSectionIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  return (
+    <div className="mx-auto space-y-4">
+      {SECTIONS.map((section) => {
+        const isOpen = openSectionIds.has(section.id);
+        return (
+          <div 
+            key={section.id} 
+            className="border border-[#E8ECF4] dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800 shadow-sm transition-all duration-200"
+          >
+            <button
+              onClick={() => toggleSection(section.id)}
+              className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4FCD] dark:focus-visible:ring-blue-400 transition-colors hover:bg-[#F8F9FD]/50 dark:hover:bg-slate-700/50"
+              aria-expanded={isOpen}
+            >
+              <div className="flex items-center gap-4">
+                <div className="hidden sm:flex w-12 h-12 rounded-xl bg-[#F8F9FD] dark:bg-slate-700 border border-[#E8ECF4] dark:border-slate-600 items-center justify-center flex-shrink-0 transition-colors duration-200">
+                  {section.icon}
+                </div>
+                <div className="w-7 h-7 rounded-full bg-[#1E4FCD] dark:bg-blue-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0 transition-colors duration-200">
+                  {section.id}
+                </div>
+                <h2 className="text-lg md:text-xl font-bold text-[#0F1B3D] dark:text-white transition-colors duration-200">
+                  {section.title}
+                </h2>
+              </div>
+              <ChevronDown 
+                className={`w-6 h-6 text-[#999999] dark:text-slate-400 transition-transform duration-300 flex-shrink-0 ${isOpen ? 'transform rotate-180' : ''}`} 
+              />
+            </button>
+            <div 
+              className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
+            >
+              <div className="p-5 md:p-6 pt-0 sm:pl-[5.5rem] text-[#666666] dark:text-slate-300 leading-relaxed transition-colors duration-200">
+                <div className="pt-4 border-t border-[#E8ECF4] dark:border-slate-700 transition-colors duration-200">
+                  {section.content}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+});
+
+PrivacyPolicyAccordion.displayName = 'PrivacyPolicyAccordion';
+
+export { PrivacyPolicyAccordion };
