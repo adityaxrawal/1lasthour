@@ -1,0 +1,209 @@
+/* === CFA PLATFORM — DESIGN TOKENS v1.0 === */
+/* Derived from DesignAcademy reference palette, adapted for financial education */
+
+:root {
+  /* ─── BASE COLORS (60% usage) ─── */
+
+  /* Page background — pure white, maximum legibility */
+  --color-bg: #ffffff;
+
+  /* Card / panel / sidebar background — barely-there cool grey */
+  --color-surface: #f8fafc;
+
+  /* Nested surface — hover fills, table zebra rows, input backgrounds */
+  --color-surface-2: #f1f5f9;
+
+  /* Primary border — cards, inputs, dividers */
+  --color-border: #e5e7eb;
+
+  /* Strong border — section separators, active outlines */
+  --color-border-strong: #d1d5db;
+
+  /* ─── BRAND COLORS (30% usage) ─── */
+
+  /* Deep navy — the authority color. Use for: page headers, hero headlines,
+     nav backgrounds, "professional" sections, dark sidebar.
+     This is your deepest brand expression. Derived from cobalt but given
+     gravitas appropriate to a financial certification platform. */
+  --color-brand: #2f6db4;
+
+  /* Mid brand — hover states on dark brand, secondary headings in light mode,
+     "section titles" like "Reading 47: Fixed Income Overview" */
+  --color-brand-mid: #235694;
+
+  /* Bright cobalt — the EXACT cobalt from the reference image (#016FBA).
+     Use for: links, topic tags, interactive buttons (non-CTA), progress
+     bar fills, reading indicators, "active chapter" markers, nav link
+     hover states, flashcard headers. This is the workhorse color. */
+  --color-brand-bright: #5b8bc5;
+
+  /* Brand tint — very subtle blue wash. Use for: selected card bg,
+     hover fill on list items, "currently studying" module highlight */
+  --color-brand-subtle: #ebf1f8;
+
+  /* Brand dark — deeper than mid, used for intense hover states */
+  --color-brand-dark: #1a4273;
+
+  /* ─── HIGHLIGHT COLORS (10% usage — CTAs only) ─── */
+
+  /* Signal orange — THE CTA color. From the reference's "Enroll Now"
+     button (#EC4E1F). Use ONLY for: primary action buttons ("Start Quiz",
+     "Next Question", "Begin Section"), key numerical stats that demand
+     attention, active progress completion percentage.
+     NEVER use for decorative purposes. If in doubt, use brand-bright instead. */
+  --color-highlight: #db5a33;
+
+  /* Highlight hover — pressed/hovered CTA state */
+  --color-highlight-hover: #c84d29;
+
+  /* Highlight tint — CTA zone background, "you have X questions left" banners */
+  --color-highlight-tint: #fdf3f0;
+
+  /* ─── SECONDARY ACCENT COLORS ─── */
+
+  /* Secondary Orange effect. */
+  --color-secondary: #f19a39;
+  --color-secondary-hover: #dd8a2c;
+  --color-secondary-tint: #fce7c3;
+
+  /* Amber gold — from the reference's right half-circle (#FF9507).
+     Use for: achievement badges ("75% mastered!"), streak indicators,
+     premium content markers, score highlights, "gold star" moments,
+     the final score display. Communicates reward and energy. */
+  --color-amber: #f59500;
+
+  /* Amber tint — badge backgrounds, achievement card bg */
+  --color-amber-tint: #fff4e0;
+
+  /* Charcoal — from the reference's dark shape (#353631).
+     Use for: code/formula blocks, "dark" secondary badges, skill-level tags
+     ("Advanced", "L1 Only"), table header backgrounds. Grounded and serious. */
+  --color-charcoal: #1f2937;
+
+  /* Charcoal tint — formula block backgrounds, code snippet bg */
+  --color-charcoal-tint: #f8fafc;
+
+  /* ─── TEXT COLORS ─── */
+
+  /* Ink primary — main body copy, all headings H1–H6.
+     Slightly navy-tinted black (not pure #000) for better reading comfort. */
+  --color-ink: #1f2937;
+
+  /* Ink secondary — labels, captions, metadata, sub-headings under cards */
+  --color-ink-secondary: #6b7280;
+
+  /* Ink tertiary — placeholders, disabled text, timestamps */
+  --color-ink-tertiary: #9ca3af;
+
+  /* Ink inverted — text on dark backgrounds (navy, charcoal, highlight) */
+  --color-ink-inverted: #ffffff;
+
+  /* Link color — inline hyperlinks in content */
+  --color-link: #2f6db4;
+
+  /* Link hover */
+  --color-link-hover: #235694;
+
+  /* ─── SEMANTIC / FUNCTIONAL COLORS ─── */
+
+  /* Success — correct answer, "well done", passed threshold.
+     Deep forest green (not neon). CFA green communicates mastery. */
+  --color-success: #146b3a;
+  --color-success-mid: #19874a;
+  --color-success-tint: #e7f5ee;
+
+  /* Error — wrong answer, failed threshold, validation error.
+     Deep red (not bright red — this is serious, not alarming). */
+  --color-error: #b82e24;
+  --color-error-mid: #d13328;
+  --color-error-tint: #fbeaea;
+
+  /* Warning — "review this topic", partially understood, near deadline.
+     Matches the amber family for coherence. */
+  --color-warning: #c97000;
+  --color-warning-tint: #fef3c7;
+
+  /* Neutral/info — general callout, tip, definition box */
+  --color-info: #016fba;
+  --color-info-tint: #e6eef8;
+
+  /* ─── INTERACTIVE STATES ─── */
+
+  /* Focus ring — keyboard navigation indicator */
+  --color-focus: rgba(1, 111, 186, 0.45);
+
+  /* Overlay — modal/drawer backdrop */
+  --color-overlay: rgba(13, 46, 107, 0.55);
+
+  /* Disabled bg */
+  --color-disabled-bg: #e9edf4;
+  --color-disabled-text: #9aa3b8;
+
+  /* ─── SHADOWS ─── */
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 40px rgba(47, 109, 180, 0.15);
+  --shadow-card: 0 12px 32px rgba(47, 109, 180, 0.12);
+  --shadow-float: 0 20px 48px rgba(47, 109, 180, 0.18);
+}
+
+/* === DARK MODE TOKENS === */
+.dark,
+[data-theme='dark'] {
+  /* ─── BASE COLORS ─── */
+  --color-bg: #0f172a;
+  --color-surface: #172033;
+  --color-surface-2: #1e293b;
+  --color-border: #334155;
+  --color-border-strong: #475569;
+
+  /* ─── BRAND COLORS ─── */
+  --color-brand: #4c8fe0;
+  --color-brand-mid: #2f6db4;
+  --color-brand-bright: #5b9ef0;
+  --color-brand-subtle: #173b63;
+  --color-brand-dark: #2563eb;
+
+  /* ─── HIGHLIGHT COLORS ─── */
+  --color-highlight: #db5a33;
+  --color-highlight-hover: #e56a47;
+  --color-highlight-tint: #3e1d15;
+
+  /* ─── SECONDARY ACCENT COLORS ─── */
+  --color-secondary: #f19a39;
+  --color-secondary-hover: #f5ad58;
+  --color-secondary-tint: #3f2c14;
+
+  /* Amber & Charcoal */
+  --color-amber-tint: #3f2c14;
+  --color-charcoal: #1e293b;
+  --color-charcoal-tint: #111827;
+
+  /* ─── TEXT COLORS ─── */
+  --color-ink: #f8fafc;
+  --color-ink-secondary: #cbd5e1;
+  --color-ink-tertiary: #94a3b8;
+  --color-ink-inverted: #0f172a;
+  --color-link: #4c8fe0;
+  --color-link-hover: #5b9ef0;
+
+  /* ─── SEMANTIC / FUNCTIONAL COLORS ─── */
+  --color-success-tint: rgba(34, 197, 94, 0.15);
+  --color-error-tint: rgba(219, 90, 51, 0.15);
+  --color-warning-tint: rgba(241, 154, 57, 0.15);
+  --color-info-tint: #173b63;
+
+  /* ─── INTERACTIVE STATES ─── */
+  --color-focus: rgba(76, 143, 224, 0.2);
+  --color-overlay: rgba(15, 23, 42, 0.8);
+  --color-disabled-bg: #1e293b;
+  --color-disabled-text: #64748b;
+
+  /* ─── SHADOWS ─── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-float: 0 20px 48px rgba(0, 0, 0, 0.45);
+}

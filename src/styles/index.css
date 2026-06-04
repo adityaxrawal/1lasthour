@@ -1,0 +1,406 @@
+/**
+ * Global Styles for CFA Study Platform
+ * 
+ * This file imports Tailwind CSS and establishes the foundation for our theme system.
+ * It defines CSS custom properties (variables) that make our theme accessible throughout
+ * the entire application, whether you're using Tailwind utilities or regular CSS.
+ * 
+ * The approach here bridges JavaScript theming (theme.js) with CSS styling, giving you
+ * the best of both worlds: dynamic theme switching in JavaScript and static, fast CSS
+ * for rendering.
+ */
+
+/* Import professional, readable fonts optimized for screen display */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@import 'tailwindcss';
+/* Import CFA Platform Design Tokens */
+@import './tokens.css';
+
+@config "../../tailwind.config.js";
+
+/**
+ * Base Layer Styles
+ * 
+ * The @layer base directive tells Tailwind to include these styles before any
+ * utility classes. This ensures our foundational styles are loaded first and can
+ * be overridden by more specific utilities when needed.
+ */
+@layer base {
+  /**
+    * Manual Dark Mode Override
+    * 
+    * When the <html> element has class="dark", these styles take precedence.
+    * For now, dark mode falls back to light mode variables until a dark theme is fully defined.
+    */
+  .dark {
+    /* Fallbacks or future dark mode tokens */
+  }
+
+  /**
+    * Base Element Styling
+    */
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      'Roboto',
+      'Helvetica Neue',
+      Arial,
+      sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+  }
+
+  /**
+    * Typography Hierarchy (Step 4.10)
+    */
+  h1 {
+    color: var(--color-ink);
+  }
+
+  h2 {
+    color: var(--color-ink);
+  }
+
+  h3 {
+    color: var(--color-brand);
+  }
+
+  h4,
+  h5,
+  h6 {
+    color: var(--color-ink-secondary);
+  }
+
+  .section-label {
+    color: var(--color-brand-bright);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+  }
+
+  p,
+  li {
+    color: var(--color-ink);
+  }
+
+  .text-muted,
+  caption,
+  .meta {
+    color: var(--color-ink-secondary);
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-brand-dark, var(--color-link-hover));
+    text-decoration: none;
+  }
+
+  .stat-number {
+    color: var(--color-highlight);
+    font-weight: 800;
+  }
+
+  .text-correct {
+    color: var(--color-success);
+    font-weight: 600;
+  }
+  .text-wrong {
+    color: var(--color-error);
+    font-weight: 600;
+  }
+
+  /**
+    * Code and Formula Elements
+    */
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family:
+      'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+  }
+
+  /**
+    * Text Selection
+    */
+  ::selection {
+    background-color: var(--color-brand-subtle);
+    color: var(--color-brand-bright);
+  }
+
+  ::-moz-selection {
+    background-color: var(--color-brand-subtle);
+    color: var(--color-brand-bright);
+  }
+
+  /**
+    * Focus Visible for keyboard nav.
+    */
+  *:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Remove outline for mouse users */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/**
+ * Buttons (Step 4.6)
+ */
+/* PRIMARY — Signal orange. Used only for: start, submit, enroll, launch */
+.btn-primary {
+  background-color: var(--color-highlight);
+  color: var(--color-ink-inverted);
+  border: none;
+}
+.btn-primary:hover {
+  background-color: var(--color-highlight-hover);
+}
+
+/* SECONDARY — Used for: next, continue, view, explore */
+.btn-secondary {
+  background-color: var(--color-bg);
+  color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+}
+.btn-secondary:hover {
+  background-color: var(--color-surface);
+}
+
+/* GHOST (on white bg) — Tertiary actions */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+}
+.btn-ghost:hover {
+  background-color: var(--color-brand-subtle);
+}
+
+/* GHOST (on dark/navy bg) — White border + text. Nav CTAs */
+.btn-ghost-inverted {
+  background-color: transparent;
+  color: var(--color-ink-inverted);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+.btn-ghost-inverted:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* DANGER — Deep red. Delete, reset, clear progress only */
+.btn-danger {
+  background-color: var(--color-error);
+  color: var(--color-ink-inverted);
+}
+
+/* SUCCESS — Green. Confirm, mark complete, celebrate */
+.btn-success {
+  background-color: var(--color-success);
+  color: var(--color-ink-inverted);
+}
+
+/* DISABLED — Grey. Applies to any variant when disabled */
+.btn-disabled,
+button:disabled {
+  background-color: var(--color-disabled-bg) !important;
+  color: var(--color-disabled-text) !important;
+  cursor: not-allowed;
+  border: none;
+}
+
+/* All buttons — shared base */
+button,
+.btn {
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/**
+ * Badges (Step 4.9)
+ */
+.badge-topic {
+  background: var(--color-brand-subtle);
+  color: var(--color-brand-bright);
+  border: 1px solid var(--color-brand-bright);
+}
+
+.badge-new {
+  background: var(--color-highlight-tint);
+  color: var(--color-highlight);
+}
+
+.badge-mastered {
+  background: var(--color-success-tint);
+  color: var(--color-success);
+}
+
+.badge-progress {
+  background: var(--color-amber-tint);
+  color: var(--color-amber);
+}
+
+.badge-todo {
+  background: var(--color-surface-2);
+  color: var(--color-ink-secondary);
+}
+
+.badge-easy {
+  background: var(--color-success-tint);
+  color: var(--color-success);
+}
+.badge-medium {
+  background: var(--color-amber-tint);
+  color: var(--color-amber);
+}
+.badge-hard {
+  background: var(--color-error-tint);
+  color: var(--color-error);
+}
+
+.badge-reading {
+  background: var(--color-charcoal-tint);
+  color: var(--color-charcoal);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/**
+ * Custom Scrollbar Styling
+ */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 6px;
+  border: 3px solid var(--color-bg);
+  transition: background-color 200ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ink-secondary);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-bg);
+}
+
+/**
+ * Utility Animations
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 300ms ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideInLeft 200ms ease-out forwards;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Print Styles
+ */
+@media print {
+  :root {
+    --color-bg: #ffffff;
+    --color-ink: #000000;
+  }
+  button,
+  .no-print,
+  nav {
+    display: none !important;
+  }
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #666;
+  }
+  pre,
+  blockquote,
+  img {
+    page-break-inside: avoid;
+  }
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
