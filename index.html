@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- SECURITY: Canvas export blocker — must be the FIRST script tag -->
+    <script>
+      (function () {
+        'use strict';
+        var _origToDataURL = HTMLCanvasElement.prototype.toDataURL;
+        var _origToBlob    = HTMLCanvasElement.prototype.toBlob;
+
+        HTMLCanvasElement.prototype.toDataURL = function () {
+          // __allowExport is set by internal tooling only; never by user code
+          if (this.__allowExport) return _origToDataURL.apply(this, arguments);
+          return 'data:image/png;base64,';
+        };
+
+        HTMLCanvasElement.prototype.toBlob = function (cb) {
+          if (this.__allowExport) return _origToBlob.apply(this, arguments);
+          if (typeof cb === 'function') cb(null);
+        };
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <!-- SECURITY: Prevent indexing, caching, and archiving -->
+    <meta name="robots"    content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1lasthour | Study Buddy</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
