@@ -23,7 +23,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(fastifyHelmet, {
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
+        defaultSrc: ["'none'"],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", 'data:'],
@@ -33,11 +33,19 @@ export async function buildApp(): Promise<FastifyInstance> {
         frameAncestors: ["'none'"],
       },
     },
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
     frameguard: { action: 'deny' },
-    referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+    referrerPolicy: { policy: 'no-referrer' },
     hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
     noSniff: true,
     xssFilter: true,
+  });
+
+  // Block archiving / caching on every response
+  app.addHook('onSend', async (_req, reply) => {
+    reply.header('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+    reply.header('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    reply.header('Pragma', 'no-cache');
   });
 
   // CORS — strict origin whitelist
@@ -47,11 +55,21 @@ export async function buildApp(): Promise<FastifyInstance> {
       if (!origin || env.CORS_ORIGINS.includes(origin)) {
         cb(null, true);
       } else {
-        cb(new Error('Not allowed by CORS'), false);
+        const err: any = new Error('Not allowed by CORS');
+        err.statusCode = 403;
+        cb(err, false);
       }
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-ID', 'X-Request-Token'],
+    allowedHeaders: [
+      'Content-Type',
+      'X-Session-Id',
+      'X-Nonce',
+      'X-Timestamp',
+      'X-Request-Signature',
+      'X-Session-Key',
+      'X-Requested-With',
+    ],
     credentials: true,
     maxAge: 86400,
   });
@@ -62,6 +80,7 @@ export async function buildApp(): Promise<FastifyInstance> {
     timeWindow: '1 minute',
     redis: env.NODE_ENV === 'test' || !isRedisConnected ? undefined : redis,
     keyGenerator: (req) => req.ip,
+    allowList: (req) => req.method === 'OPTIONS',
     errorResponseBuilder: () => ({
       statusCode: 429,
       error: 'RATE_LIMIT_EXCEEDED',

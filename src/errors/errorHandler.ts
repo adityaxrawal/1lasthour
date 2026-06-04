@@ -54,11 +54,11 @@ export async function globalErrorHandler(
     });
   }
 
-  // ── Fastify validation error → 400 ────────────────────────────────────────
+  // ── Fastify generic/validation errors ──────────────────────────────────────
   const fastifyError = error as FastifyError;
-  if (fastifyError.statusCode === 400) {
-    return reply.code(400).send({
-      error: 'VALIDATION_ERROR',
+  if (fastifyError.statusCode && fastifyError.statusCode >= 400 && fastifyError.statusCode < 500) {
+    return reply.code(fastifyError.statusCode).send({
+      error: fastifyError.statusCode === 400 ? 'VALIDATION_ERROR' : 'CLIENT_ERROR',
       message: fastifyError.message,
       requestId,
       timestamp,

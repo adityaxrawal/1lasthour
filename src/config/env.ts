@@ -16,12 +16,6 @@ const envSchema = z.object({
   REDIS_URL: z.string(),
   REDIS_TTL_DEFAULT: z.coerce.number().int().min(1).default(86400),
 
-  // JWT
-  JWT_PRIVATE_KEY: z.string().min(1),
-  JWT_PUBLIC_KEY: z.string().min(1),
-  JWT_ACCESS_TOKEN_EXPIRY: z.coerce.number().int().min(60).default(900),
-  JWT_REFRESH_TOKEN_EXPIRY: z.coerce.number().int().min(3600).default(604800),
-
   // CORS
   CORS_ORIGINS: z.string().transform((v) => v.split(',')),
   ALLOWED_ORIGIN: z.string().url(),
@@ -29,7 +23,6 @@ const envSchema = z.object({
   // Rate limiting
   RATE_LIMIT_GLOBAL: z.coerce.number().int().min(1).default(100),
   RATE_LIMIT_SEARCH: z.coerce.number().int().min(1).default(30),
-  RATE_LIMIT_AUTH: z.coerce.number().int().min(1).default(10),
 
   // Logging
   LOG_LEVEL: z.enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal']).default('info'),
@@ -38,6 +31,14 @@ const envSchema = z.object({
   SESSION_SECRET: z.string().min(32),
   IP_SALT: z.string().min(16),
   REQUEST_SECRET: z.string().min(32),
+  SESSION_KEY_SALT: z.string().min(16),
+
+  // Request token TTL
+  TOKEN_TTL_MS: z.coerce.number().int().min(5000).default(30000),
+
+  // CFA-specific rate limits (narrower than global)
+  RATE_LIMIT_WINDOW_MS: z.coerce.number().int().min(1000).default(60000),
+  RATE_LIMIT_MAX: z.coerce.number().int().min(1).default(15),
 });
 
 const parsed = envSchema.safeParse(process.env);
