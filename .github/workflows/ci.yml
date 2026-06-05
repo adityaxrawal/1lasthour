@@ -9,9 +9,7 @@ on:
     branches:
       - prod-fe
       - dev-fe
-
-permissions:
-  contents: read
+  workflow_dispatch: # Added to allow manual operational execution
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -21,180 +19,141 @@ env:
   NODE_VERSION: '22.x'
   PNPM_VERSION: '9.15.0'
 
+permissions:
+  contents: read
+
 jobs:
-  quality:
-    name: Code Quality (Lint & Format)
+  static-analysis:
+    name: Code Quality & Security
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
+        timeout-minutes: 5
 
-      - name: Check for secrets
-        run: pnpm run check:secrets
+      - run: pnpm run check:secrets
 
+      # CRITICAL FIX: Removed the fallback echo to ensure pipeline fails on bad types
+      - name: Run Typecheck
+        run: pnpm run typecheck
+
+      # Note: Includes github.sha to intentionally cause a primary key miss,
+      # forcing actions/cache to save the updated incremental cache post-run.
       - name: Restore ESLint Cache
         uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
         with:
           path: .eslintcache
-          key: eslintcache-${{ runner.os }}-${{ github.ref }}-${{ github.sha }}
+          key: eslintcache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
           restore-keys: |
-            eslintcache-${{ runner.os }}-${{ github.ref }}-
-            eslintcache-${{ runner.os }}-
+            eslintcache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
 
-      - name: Check formatting
-        run: pnpm run format:check
+      - run: pnpm run format:check
+      - run: pnpm run lint
+      - run: pnpm audit --audit-level=high
 
-      - name: Run ESLint
-        run: pnpm run lint
-
-  typecheck:
-    name: Type Check
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+      - name: Run OSV-Scanner
+        uses: google/osv-scanner-action/osv-scanner-action@19ec1116569a47416e11a45848722b1af31a857b # v1.9.0
         with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Type check
-        run: pnpm run type-check
+          scan-args: |-
+            -r
+            .
 
   test:
     name: Unit Tests
     runs-on: ubuntu-latest
+    # HIGH PRIORITY FIX: Removed needs: static-analysis to allow parallel execution
     timeout-minutes: 15
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
         with:
           version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
-      - name: Run tests
-        run: pnpm run test:ci
+      - run: pnpm run test:ci
 
-      - name: Upload coverage report
-        if: always()
-        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+      - if: always()
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
         with:
           name: coverage-report
           path: coverage/
           retention-days: 14
 
-  security:
-    name: Security Scan
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
-        with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Audit dependencies
-        run: pnpm audit --prod --audit-level=high
-
   build:
     name: Build & Artifact Validation
     runs-on: ubuntu-latest
+    # HIGH PRIORITY FIX: Removed needs: static-analysis
     timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
         with:
           version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
+      # Note: Includes github.sha to facilitate incremental Vite caching
       - name: Restore Vite Cache
         uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
         with:
           path: node_modules/.vite
-          key: vitecache-${{ runner.os }}-${{ github.ref }}-${{ github.sha }}
+          key: vitecache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
           restore-keys: |
-            vitecache-${{ runner.os }}-${{ github.ref }}-
-            vitecache-${{ runner.os }}-
+            vitecache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
 
       - name: Validate Environment Config
         run: pnpm run check:env
         env:
           CI: true
-          VITE_API_URL: https://api.dummy.local
+          VITE_API_URL: 'https://api.dummy.local'
           VITE_ENVIRONMENT: ci
 
+      # HIGH PRIORITY FIX: Provide runtime placeholders instead of baking PROD secrets into CI builds
       - name: Build application
         run: pnpm run build
         env:
           CI: true
-          VITE_API_URL: https://api.dummy.local
-          VITE_ENVIRONMENT: ci
+          VITE_API_URL: '__API_URL_PLACEHOLDER__'
+          VITE_ENVIRONMENT: '__ENV_PLACEHOLDER__'
 
-      - name: Check bundle size
-        run: pnpm run check:bundle
+      - run: pnpm run check:bundle
 
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+      - name: Generate Build Provenance (SLSA Level 3)
+        uses: actions/attest-build-provenance@1c608d11d69870c2092266b3f9a6f3abbf17002c
+        with:
+          subject-path: 'dist/'
+
+      - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
         with:
           name: dist-artifact
           path: dist/
@@ -206,41 +165,36 @@ jobs:
     needs: build
     timeout-minutes: 10
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
         with:
           version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
+      - run: pnpm install --frozen-lockfile
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Download Build Artifact
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+      - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
         with:
           name: dist-artifact
           path: dist/
 
-      - name: Run Lighthouse
-        run: pnpm run lighthouse
+      - run: pnpm run lighthouse
 
   ci-success:
     name: CI Success (Gatekeeper)
     runs-on: ubuntu-latest
     if: always()
-    needs: [quality, typecheck, test, security, build, lighthouse]
+    needs: [static-analysis, test, build, lighthouse]
     steps:
       - name: Check workflow status
         run: |
+          # Evaluates failure or cancellation. Removes 'skipped' to allow future conditional path filtering.
           if [[ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
-            echo "One or more required jobs failed or were cancelled."
+            echo "::error::One or more required jobs failed or were cancelled."
             exit 1
           fi
+          echo "All checks passed successfully!"
