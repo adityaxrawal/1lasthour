@@ -38,8 +38,6 @@ pending.md
 .antigravity
 .ui-images
 about-exam-hero-backup.png
-scripts/
-
 # Env files
 .env
 .env.*
