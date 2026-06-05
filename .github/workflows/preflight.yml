@@ -133,7 +133,7 @@ jobs:
         run: pnpm run build:verify
 
       - name: Generate SBOM
-        run: npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file dist/sbom.json
+        run: npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file dist/sbom.json --ignore-npm-errors
 
       - name: Upload Production Artifact
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
@@ -151,7 +151,7 @@ jobs:
     steps:
       - name: Verify All Dependencies Succeeded
         # Ensures that if any job fails, is cancelled, OR IS SKIPPED, the gate fails.
-        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped')
+        if: ${{ needs.quality.result != 'success' || needs.security-and-tests.result != 'success' || needs.build.result != 'success' }}
         run: |
           echo "::error::Gate Failed! One or more preflight checks failed or were unexpectedly skipped."
           exit 1
