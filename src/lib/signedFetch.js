@@ -31,11 +31,13 @@ function getSessionKey() {
   if (!_sessionKey) {
     // In non-secure contexts, we can't encrypt/decrypt using subtle crypto
     if (!window.crypto || !window.crypto.subtle) return null;
-    
+
     // Generate a 64-char hex key (256-bit)
     const bytes = new Uint8Array(32);
     crypto.getRandomValues(bytes);
-    _sessionKey = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    _sessionKey = Array.from(bytes)
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
   return _sessionKey;
 }
@@ -54,7 +56,7 @@ async function initSession() {
   const url = `${API_ORIGIN}/api/v1/session/init`;
   const response = await fetch(url, {
     method: 'GET',
-    headers: { 'Accept': 'application/json' },
+    headers: { Accept: 'application/json' },
   });
   if (!response.ok) {
     throw new Error(`Session init failed: ${response.status}`);
@@ -72,12 +74,12 @@ async function getSessionInfo() {
     return _initPromise;
   }
   _initPromise = initSession()
-    .then(data => {
+    .then((data) => {
       _sessionInfo = data;
       _initPromise = null;
       return _sessionInfo;
     })
-    .catch(err => {
+    .catch((err) => {
       _initPromise = null;
       throw err;
     });
@@ -109,12 +111,12 @@ async function signRequest(sessionId, nonce, timestamp, path, secret) {
     enc.encode(secret),
     { name: 'HMAC', hash: 'SHA-256' },
     false,
-    ['sign'],
+    ['sign']
   );
   const message = `${sessionId}${nonce}${timestamp}${path}`;
   const buf = await crypto.subtle.sign('HMAC', key, enc.encode(message));
   return Array.from(new Uint8Array(buf))
-    .map(b => b.toString(16).padStart(2, '0'))
+    .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
 }
 
@@ -137,10 +139,16 @@ function base64ToUint8Array(base64) {
 async function decryptPayload(envelope, sessionKey) {
   // Backend uses first 32 bytes of the raw session key string as AES key material
   const keyBytes = new TextEncoder().encode(sessionKey.slice(0, 32).padEnd(32, '0'));
-  const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'AES-GCM' }, false, ['decrypt']);
+  const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'AES-GCM' }, false, [
+    'decrypt',
+  ]);
   // Support both legacy array format and new base64 format for rolling updates
-  const iv = Array.isArray(envelope.iv) ? new Uint8Array(envelope.iv) : base64ToUint8Array(envelope.iv);
-  const data = Array.isArray(envelope.data) ? new Uint8Array(envelope.data) : base64ToUint8Array(envelope.data);
+  const iv = Array.isArray(envelope.iv)
+    ? new Uint8Array(envelope.iv)
+    : base64ToUint8Array(envelope.iv);
+  const data = Array.isArray(envelope.data)
+    ? new Uint8Array(envelope.data)
+    : base64ToUint8Array(envelope.data);
   const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, data);
   return JSON.parse(new TextDecoder().decode(plain));
 }
@@ -167,17 +175,26 @@ function normalizePath(path) {
 // ── Core signed fetch ─────────────────────────────────────────────────────────
 
 async function _doFetch(path, sessionInfo) {
-  const nonce = window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : Math.random().toString(36).substring(2) + Date.now().toString(36);
+  const nonce =
+    window.crypto && window.crypto.randomUUID
+      ? window.crypto.randomUUID()
+      : Math.random().toString(36).substring(2) + Date.now().toString(36);
   const timestamp = Date.now().toString();
   const sessionKey = getSessionKey();
 
   // IMPORTANT: normalise before signing — must match req.url on the backend
   const normalizedPath = normalizePath(path);
 
-  const sig = await signRequest(sessionInfo.sessionId, nonce, timestamp, normalizedPath, sessionInfo.signature);
+  const sig = await signRequest(
+    sessionInfo.sessionId,
+    nonce,
+    timestamp,
+    normalizedPath,
+    sessionInfo.signature
+  );
 
   const headers = {
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-Session-Id': sessionInfo.sessionId,
     'X-Nonce': nonce,

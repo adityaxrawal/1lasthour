@@ -108,13 +108,13 @@ const GlobalHeader = memo(function GlobalHeader({ navLinks = [], onScrollTo = ()
   return (
     <header className="fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b border-border/50 bg-bg shadow-sm">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
-        <HeaderLeft
-          isLanding={isLanding}
-          searchParams={searchParams}
-          handleSearch={handleSearch}
-        />
+        <HeaderLeft isLanding={isLanding} searchParams={searchParams} handleSearch={handleSearch} />
 
-        {isLanding ? <LandingNav navLinks={navLinks} handleScrollTo={handleScrollTo} /> : <DesktopNav />}
+        {isLanding ? (
+          <LandingNav navLinks={navLinks} handleScrollTo={handleScrollTo} />
+        ) : (
+          <DesktopNav />
+        )}
 
         <HeaderRight
           isLanding={isLanding}

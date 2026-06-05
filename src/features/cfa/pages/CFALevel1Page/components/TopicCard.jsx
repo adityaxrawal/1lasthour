@@ -69,10 +69,10 @@ const TopicCard = memo(function TopicCard({ topic, index, basePath }) {
       <Card hover className="flex h-full flex-col p-6">
         <TopicCardHeader index={index} icon={topic.icon} />
         <TopicCardContent title={topic.title} description={topic.description} />
-        <TopicCardMeta 
-          modules={topic.modules} 
-          studyHours={topic.studyHours} 
-          weight={topic.weight} 
+        <TopicCardMeta
+          modules={topic.modules}
+          studyHours={topic.studyHours}
+          weight={topic.weight}
         />
       </Card>
     </Link>

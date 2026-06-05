@@ -14,28 +14,28 @@ describe('useLOSTabSection', () => {
 
   it('should navigate next and prev correctly', () => {
     const { result } = renderHook(() => useLOSTabSection(mockLOS));
-    
+
     act(() => {
       result.current.goToNext();
     });
     expect(result.current.selectedIndex).toBe(1);
-    
+
     act(() => {
       result.current.goToNext();
     });
     expect(result.current.selectedIndex).toBe(2);
-    
+
     // Test boundary
     act(() => {
       result.current.goToNext();
     });
     expect(result.current.selectedIndex).toBe(2);
-    
+
     act(() => {
       result.current.goToPrev();
     });
     expect(result.current.selectedIndex).toBe(1);
-    
+
     // Test boundary
     act(() => {
       result.current.goToPrev();
@@ -48,7 +48,7 @@ describe('useLOSTabSection', () => {
     const { result } = renderHook(() => useLOSTabSection(null));
     expect(result.current.selectedIndex).toBe(0);
     expect(result.current.selectedLOS).toBe(null);
-    
+
     act(() => {
       result.current.goToNext();
     });

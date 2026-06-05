@@ -7,17 +7,12 @@ import { BackButton, BreadcrumbItem } from './BreadcrumbsParts';
 
 function BreadcrumbsList({ backPath, breadcrumbs }) {
   if (!breadcrumbs || breadcrumbs.length === 0) return null;
-  
+
   return (
     <div className="flex items-center gap-2">
       {backPath ? <div className="h-4 w-px bg-border-default" /> : null}
       {breadcrumbs.map((crumb, idx) => (
-        <BreadcrumbItem 
-          key={idx} 
-          crumb={crumb} 
-          idx={idx} 
-          isLast={idx === breadcrumbs.length - 1} 
-        />
+        <BreadcrumbItem key={idx} crumb={crumb} idx={idx} isLast={idx === breadcrumbs.length - 1} />
       ))}
     </div>
   );
@@ -40,18 +35,12 @@ function PageBreadcrumbs({ backPath, breadcrumbs }) {
 
 const HeaderIcon = ({ icon }) => {
   if (!icon) return null;
-  return (
-    <div className="rounded-lg border border-border bg-surface p-3 text-ink">
-      {icon}
-    </div>
-  );
+  return <div className="rounded-lg border border-border bg-surface p-3 text-ink">{icon}</div>;
 };
 
 const HeaderDescription = ({ description }) => {
   if (!description) return null;
-  return (
-    <p className="max-w-3xl text-lg leading-relaxed text-ink-secondary">{description}</p>
-  );
+  return <p className="max-w-3xl text-lg leading-relaxed text-ink-secondary">{description}</p>;
 };
 
 const HeaderStats = ({ stats }) => {
@@ -99,12 +88,12 @@ const StandardPageLayout = memo(function StandardPageLayout({
       {/* Header */}
       <div className="space-y-6">
         <PageBreadcrumbs backPath={backPath} breadcrumbs={breadcrumbs} />
-        <PageHeader 
-          icon={icon} 
-          title={title} 
-          description={description} 
-          stats={stats} 
-          actions={actions} 
+        <PageHeader
+          icon={icon}
+          title={title}
+          description={description}
+          stats={stats}
+          actions={actions}
         />
       </div>
 

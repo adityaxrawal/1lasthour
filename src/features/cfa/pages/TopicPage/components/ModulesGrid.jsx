@@ -13,11 +13,7 @@ const ModulesGrid = memo(function ModulesGrid({ topicData, topicId }) {
       </h2>
       <div className="grid gap-6 md:grid-cols-2">
         {topicData.modules?.map((module, index) => (
-          <Link
-            key={module.id}
-            to={`/cfa/level-1/${topicId}/${module.id}`}
-            className="group block"
-          >
+          <Link key={module.id} to={`/cfa/level-1/${topicId}/${module.id}`} className="group block">
             <Card hover className="h-full rounded-xl border-border p-6">
               <div className="flex gap-4">
                 <div className="pt-1 text-2xl font-bold text-highlight">

@@ -15,7 +15,7 @@ export const useThemePersistence = (theme, setThemeState) => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute(
-        'content', 
+        'content',
         theme === THEME_CONSTANTS.DARK ? THEME_CONSTANTS.COLORS.DARK : THEME_CONSTANTS.COLORS.LIGHT
       );
     }

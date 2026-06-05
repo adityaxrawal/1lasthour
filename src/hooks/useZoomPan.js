@@ -1,6 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 
-import { calculateZoom, calculateZoomIn, calculateZoomOut, calculatePan } from '../utils/zoomPanHelpers';
+import {
+  calculateZoom,
+  calculateZoomIn,
+  calculateZoomOut,
+  calculatePan,
+} from '../utils/zoomPanHelpers';
 
 export const useZoomPan = ({ isOpen }) => {
   const [zoom, setZoom] = useState(100);

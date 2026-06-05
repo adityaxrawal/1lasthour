@@ -23,7 +23,7 @@ const PrivacyPolicyPage = memo(function PrivacyPolicyPage() {
       </main>
 
       <PrivacyPolicyCTA />
-      
+
       <Footer />
     </div>
   );

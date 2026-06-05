@@ -22,7 +22,7 @@ const TermsAndConditionsPage = memo(function TermsAndConditionsPage() {
       </main>
 
       <TermsAndConditionsCTA />
-      
+
       <Footer />
     </div>
   );

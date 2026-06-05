@@ -90,9 +90,8 @@ function FallbackSection({ moduleData }) {
         <div className="flex-1">
           <h3 className="mb-2 font-bold text-ink">Content Loading</h3>
           <p className="leading-relaxed text-sm text-ink-secondary">
-            Detailed cheatsheets, formulas, and summaries for this module are currently
-            being compiled. Check back soon for the full breakdown of{' '}
-            <strong>{moduleData.title}</strong>.
+            Detailed cheatsheets, formulas, and summaries for this module are currently being
+            compiled. Check back soon for the full breakdown of <strong>{moduleData.title}</strong>.
           </p>
         </div>
       </div>

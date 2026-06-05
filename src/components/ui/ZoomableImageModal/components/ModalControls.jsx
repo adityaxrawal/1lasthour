@@ -2,7 +2,12 @@ import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 
-const ModalControls = memo(function ModalControls({ zoom, handleZoomIn, handleZoomOut, handleReset }) {
+const ModalControls = memo(function ModalControls({
+  zoom,
+  handleZoomIn,
+  handleZoomOut,
+  handleReset,
+}) {
   return (
     <div className="absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 rounded-2xl border border-slate-700/80 bg-slate-800/90 p-1.5 shadow-2xl ring-1 ring-white/5 backdrop-blur-xl">
       <button

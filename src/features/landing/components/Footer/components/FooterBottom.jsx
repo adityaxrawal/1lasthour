@@ -11,7 +11,10 @@ const FooterBottom = memo(function FooterBottom() {
         <Link to="/privacy-policy" className="text-white transition-colors hover:text-secondary">
           {'Privacy Policy'}
         </Link>
-        <a href="/terms-and-conditions" className="text-white transition-colors hover:text-secondary">
+        <a
+          href="/terms-and-conditions"
+          className="text-white transition-colors hover:text-secondary"
+        >
           {'Terms of Service'}
         </a>
       </div>

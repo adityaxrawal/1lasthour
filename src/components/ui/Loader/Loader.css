@@ -14,9 +14,10 @@
   position: relative;
 }
 
-.loader:before, .loader:after {
+.loader:before,
+.loader:after {
   --r: -6deg;
-  content: "";
+  content: '';
   position: absolute;
   bottom: 8px;
   width: 120px;
@@ -126,11 +127,13 @@
     opacity: 1;
   }
 
-  35%, 100% {
+  35%,
+  100% {
     opacity: 0;
   }
 
-  50%, 100% {
+  50%,
+  100% {
     transform: rotateY(0deg);
   }
 }
@@ -145,11 +148,13 @@
     opacity: 1;
   }
 
-  50%, 100% {
+  50%,
+  100% {
     opacity: 0;
   }
 
-  65%, 100% {
+  65%,
+  100% {
     transform: rotateY(0deg);
   }
 }
@@ -164,11 +169,13 @@
     opacity: 1;
   }
 
-  65%, 100% {
+  65%,
+  100% {
     opacity: 0;
   }
 
-  80%, 100% {
+  80%,
+  100% {
     transform: rotateY(0deg);
   }
 }
@@ -183,11 +190,13 @@
     opacity: 1;
   }
 
-  80%, 100% {
+  80%,
+  100% {
     opacity: 0;
   }
 
-  95%, 100% {
+  95%,
+  100% {
     transform: rotateY(0deg);
   }
 }

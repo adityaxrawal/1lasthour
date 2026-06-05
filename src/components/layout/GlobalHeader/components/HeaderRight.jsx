@@ -7,7 +7,7 @@ import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const HeaderBreadcrumbs = ({ isLanding, breadcrumbs }) => {
   if (isLanding || breadcrumbs.length === 0) return null;
-  
+
   return (
     <div className="hidden items-center gap-1.5 rounded-full border border-border bg-surface/50 px-3 py-1.5 text-xs text-ink-secondary lg:flex mr-2">
       <Link
@@ -22,9 +22,7 @@ const HeaderBreadcrumbs = ({ isLanding, breadcrumbs }) => {
         <React.Fragment key={crumb.url}>
           <ChevronRight className="h-3 w-3 text-ink-tertiary/70" />
           {idx === breadcrumbs.length - 1 ? (
-            <span className="max-w-[150px] truncate font-medium text-ink">
-              {crumb.label}
-            </span>
+            <span className="max-w-[150px] truncate font-medium text-ink">{crumb.label}</span>
           ) : (
             <Link
               to={crumb.url}
@@ -41,7 +39,7 @@ const HeaderBreadcrumbs = ({ isLanding, breadcrumbs }) => {
 
 const HeaderCTA = ({ isLanding }) => {
   if (!isLanding) return null;
-  
+
   return (
     <Link
       to="/cfa/level-1"
@@ -75,10 +73,7 @@ const HeaderRight = memo(function HeaderRight({
       <HeaderBreadcrumbs isLanding={isLanding} breadcrumbs={breadcrumbs} />
       <ThemeToggle />
       <HeaderCTA isLanding={isLanding} />
-      <MobileMenuToggle 
-        mobileMenuOpen={mobileMenuOpen} 
-        setMobileMenuOpen={setMobileMenuOpen} 
-      />
+      <MobileMenuToggle mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
     </div>
   );
 });

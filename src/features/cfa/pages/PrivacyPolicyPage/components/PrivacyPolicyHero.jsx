@@ -12,15 +12,18 @@ const PrivacyPolicyHero = memo(function PrivacyPolicyHero() {
           Privacy Policy
         </h1>
         <p className="text-lg text-[#666666] dark:text-slate-400 mb-8 leading-relaxed max-w-2xl">
-          Your privacy is important to us. This Privacy Policy explains how we collect,
-          use, and protect your personal data when you use 1LastHour.
+          Your privacy is important to us. This Privacy Policy explains how we collect, use, and
+          protect your personal data when you use 1LastHour.
         </p>
         <div className="flex items-center gap-2 text-[#666666] dark:text-slate-300 font-medium bg-[#F8F9FD] dark:bg-slate-800 py-2 px-4 rounded-full w-fit">
           <Calendar className="w-4 h-4 text-[#1E4FCD] dark:text-blue-400" />
-          <span>Effective Date: <span className="text-[#1E4FCD] dark:text-blue-400">October 1, 2023</span></span>
+          <span>
+            Effective Date:{' '}
+            <span className="text-[#1E4FCD] dark:text-blue-400">October 1, 2023</span>
+          </span>
         </div>
       </div>
-      
+
       <div className="w-full lg:w-[45%] hidden md:flex justify-center">
         {/* 3D Illustration CSS Mockup */}
         <div className="relative w-72 h-80">

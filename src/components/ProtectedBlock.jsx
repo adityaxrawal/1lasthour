@@ -12,12 +12,12 @@ export function ProtectedBlock({ children }) {
       <div
         aria-hidden="true"
         style={{
-          position:        'absolute',
-          inset:           0,
-          zIndex:          50,
+          position: 'absolute',
+          inset: 0,
+          zIndex: 50,
           backgroundColor: 'transparent',
-          cursor:          'default',
-          userSelect:      'none',
+          cursor: 'default',
+          userSelect: 'none',
           WebkitUserSelect: 'none',
         }}
         onContextMenu={(e) => e.preventDefault()}
@@ -25,5 +25,5 @@ export function ProtectedBlock({ children }) {
       />
       {children}
     </div>
-  )
+  );
 }

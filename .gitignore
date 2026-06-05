@@ -30,9 +30,14 @@ src/features/cfa/data/
 # Testing
 coverage/
 
-#Ignore Local Files
+# Ignore Local Files
 local
 pending.md
 .antigravity
 .ui-images
 about-exam-hero-backup.png
+scripts/
+
+# Env files
+.env
+.env.*

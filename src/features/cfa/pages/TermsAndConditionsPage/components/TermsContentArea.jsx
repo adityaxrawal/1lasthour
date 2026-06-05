@@ -5,17 +5,15 @@ import { termsData } from '../data/termsData.jsx';
 
 import { TermsSectionCard } from './TermsSectionCard';
 
-
 export function TermsContentArea() {
   const currentDate = new Date().toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
-    year: 'numeric'
+    year: 'numeric',
   });
 
   return (
     <div className="bg-white dark:bg-slate-900/50 rounded-[32px] p-6 md:p-10 my-12 dark:ring-1 dark:ring-slate-800">
-      
       {/* Effective Date Card */}
       <div className="bg-white dark:bg-slate-800 border border-[#edf1f7] dark:border-slate-700 rounded-[20px] p-6 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)] mb-12 flex flex-col md:flex-row items-center md:items-start gap-6">
         <div className="w-16 h-16 rounded-2xl bg-[#f4f7ff] dark:bg-slate-700 flex items-center justify-center flex-shrink-0 text-[#2f6cff] dark:text-blue-400">
@@ -26,7 +24,10 @@ export function TermsContentArea() {
             Effective Date: <span className="text-[#2f6cff] dark:text-blue-400">{currentDate}</span>
           </h2>
           <p className="text-[16px] leading-[1.8] text-[#667085] dark:text-slate-300">
-            These Terms and Conditions constitute a legally binding agreement made between you and 1LastHour concerning your access to and use of our platform. We reserve the right, in our sole discretion, to make changes or modifications to these Terms and Conditions at any time and for any reason.
+            These Terms and Conditions constitute a legally binding agreement made between you and
+            1LastHour concerning your access to and use of our platform. We reserve the right, in
+            our sole discretion, to make changes or modifications to these Terms and Conditions at
+            any time and for any reason.
           </p>
         </div>
       </div>
@@ -37,7 +38,6 @@ export function TermsContentArea() {
           <TermsSectionCard key={section.id} section={section} />
         ))}
       </div>
-      
     </div>
   );
 }

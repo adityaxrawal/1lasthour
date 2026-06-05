@@ -33,7 +33,15 @@ const TIMELINE = [
 const DesktopStep = memo(function DesktopStep({ step, index, isLast }) {
   const Icon = step.icon;
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+    <div
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        position: 'relative',
+      }}
+    >
       {/* Connector line (right side, skip for last) */}
       {!isLast && (
         <div
@@ -107,7 +115,14 @@ const DesktopStep = memo(function DesktopStep({ step, index, isLast }) {
 
       {/* Text */}
       <div style={{ marginTop: '0.75rem', textAlign: 'center', padding: '0 4px' }}>
-        <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--color-ink)', marginBottom: '4px' }}>
+        <div
+          style={{
+            fontSize: '14px',
+            fontWeight: 700,
+            color: 'var(--color-ink)',
+            marginBottom: '4px',
+          }}
+        >
           {step.title}
         </div>
         <div style={{ fontSize: '12px', color: 'var(--color-ink-secondary)', lineHeight: 1.5 }}>
@@ -127,16 +142,10 @@ export const RegistrationTimelineSection = memo(function RegistrationTimelineSec
       </h2>
 
       <div className="rounded-2xl border border-border bg-surface p-8 shadow-sm">
-
         {/* ── Desktop: Flexbox Horizontal Timeline ──────────────────────── */}
         <div className="hidden md:flex" style={{ gap: 0, alignItems: 'flex-start' }}>
           {TIMELINE.map((step, idx) => (
-            <DesktopStep
-              key={idx}
-              step={step}
-              index={idx}
-              isLast={idx === TIMELINE.length - 1}
-            />
+            <DesktopStep key={idx} step={step} index={idx} isLast={idx === TIMELINE.length - 1} />
           ))}
         </div>
 

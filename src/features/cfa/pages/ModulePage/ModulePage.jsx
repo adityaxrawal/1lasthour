@@ -35,9 +35,9 @@ const ModulePage = memo(function ModulePage() {
 
   if (isError) {
     return (
-      <ErrorState 
-        title="Error loading data" 
-        message="There was a problem fetching the module. Please try again later." 
+      <ErrorState
+        title="Error loading data"
+        message="There was a problem fetching the module. Please try again later."
       />
     );
   }

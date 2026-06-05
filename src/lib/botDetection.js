@@ -10,36 +10,33 @@
  */
 export async function isHeadlessBrowser() {
   // 1. WebDriver flag — set by all Selenium / Puppeteer / Playwright sessions
-  if (navigator.webdriver) return true
+  if (navigator.webdriver) return true;
 
   // 2. PhantomJS globals
-  if ('callPhantom' in window || '_phantom' in window) return true
+  if ('callPhantom' in window || '_phantom' in window) return true;
 
   // 3. Empty plugins array — headless Chrome ships with none
-  if (navigator.plugins.length === 0) return true
+  if (navigator.plugins.length === 0) return true;
 
   // 4. No languages configured
-  if (!navigator.languages || navigator.languages.length === 0) return true
+  if (!navigator.languages || navigator.languages.length === 0) return true;
 
   // 5. Zero-dimension screen — some headless configs expose this
-  if (screen.width === 0 || screen.height === 0) return true
+  if (screen.width === 0 || screen.height === 0) return true;
 
   // 6. Real Chrome always has window.chrome.runtime; headless often lacks it
-  if (
-    /chrome/i.test(navigator.userAgent) &&
-    !(/** @type {any} */ (window).chrome?.runtime)
-  ) return true
+  if (/chrome/i.test(navigator.userAgent) && !(/** @type {any} */ (window).chrome?.runtime))
+    return true;
 
   // 7. Permissions API anomaly — headless environments return inconsistent state
   try {
-    const perm = await navigator.permissions.query({ name: 'notifications' })
-    if (perm.state === 'denied' && Notification.permission === 'default') return true
-  }  
-    catch (e) { // eslint-disable-line no-unused-vars
+    const perm = await navigator.permissions.query({ name: 'notifications' });
+    if (perm.state === 'denied' && Notification.permission === 'default') return true;
+  } catch {
     // Some browsers don't support the Permissions API — not itself a bot signal
   }
 
-  return false
+  return false;
 }
 
 /**
@@ -48,10 +45,10 @@ export async function isHeadlessBrowser() {
  * @returns {Promise<void>}
  */
 export async function enforceHumanBrowser() {
-  const isBot = await isHeadlessBrowser()
+  const isBot = await isHeadlessBrowser();
   if (isBot) {
-    document.body.innerHTML = ''
-    document.title          = ''
-    throw new Error('[1lasthour] Automated access is not permitted.')
+    document.body.innerHTML = '';
+    document.title = '';
+    throw new Error('[1lasthour] Automated access is not permitted.');
   }
 }

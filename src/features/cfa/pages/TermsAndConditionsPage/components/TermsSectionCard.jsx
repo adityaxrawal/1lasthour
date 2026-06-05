@@ -1,6 +1,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import clsx from 'clsx';
-import { ChevronDown, Monitor, ShieldCheck, Lock, FileText, User, PieChart, AlertTriangle, Scale, RefreshCw, Mail } from 'lucide-react';
+import {
+  ChevronDown,
+  Monitor,
+  ShieldCheck,
+  Lock,
+  FileText,
+  User,
+  PieChart,
+  AlertTriangle,
+  Scale,
+  RefreshCw,
+  Mail,
+} from 'lucide-react';
 import React, { useState } from 'react';
 
 const iconMap = {
@@ -13,7 +25,7 @@ const iconMap = {
   AlertTriangle: AlertTriangle,
   Scale: Scale,
   RefreshCw: RefreshCw,
-  Mail: Mail
+  Mail: Mail,
 };
 
 export function TermsSectionCard({ section }) {
@@ -23,7 +35,7 @@ export function TermsSectionCard({ section }) {
 
   return (
     <div className="bg-white dark:bg-slate-800 border border-[#edf1f7] dark:border-slate-700 rounded-[20px] p-7 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
-      <div 
+      <div
         className="flex items-start justify-between cursor-pointer group"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -44,20 +56,20 @@ export function TermsSectionCard({ section }) {
               <h2 className="text-[24px] md:text-[28px] font-bold text-[#102a5c] dark:text-white">
                 {section.title}
               </h2>
-              <button 
+              <button
                 className={clsx(
-                  "text-[#6f7b91] dark:text-slate-400 transition-transform duration-300 ml-4 flex-shrink-0 md:hidden",
-                  isOpen ? "rotate-180" : "rotate-0"
+                  'text-[#6f7b91] dark:text-slate-400 transition-transform duration-300 ml-4 flex-shrink-0 md:hidden',
+                  isOpen ? 'rotate-180' : 'rotate-0'
                 )}
               >
                 <ChevronDown size={24} />
               </button>
             </div>
-            
-            <div 
+
+            <div
               className={clsx(
-                "overflow-hidden transition-all duration-300",
-                isOpen ? "max-h-[1000px] opacity-100 mt-4" : "max-h-0 opacity-0"
+                'overflow-hidden transition-all duration-300',
+                isOpen ? 'max-h-[1000px] opacity-100 mt-4' : 'max-h-0 opacity-0'
               )}
             >
               <div className="text-[16px] leading-[1.9] text-[#667085] dark:text-slate-300">
@@ -68,10 +80,10 @@ export function TermsSectionCard({ section }) {
         </div>
 
         {/* Desktop Chevron */}
-        <button 
+        <button
           className={clsx(
-            "text-[#6f7b91] dark:text-slate-400 transition-transform duration-300 mt-4 ml-4 hidden md:block",
-            isOpen ? "rotate-180" : "rotate-0"
+            'text-[#6f7b91] dark:text-slate-400 transition-transform duration-300 mt-4 ml-4 hidden md:block',
+            isOpen ? 'rotate-180' : 'rotate-0'
           )}
         >
           <ChevronDown size={24} />

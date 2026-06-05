@@ -83,7 +83,7 @@ SearchSection.defaultProps = {
 const GlobalSearchResults = memo(function GlobalSearchResults() {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
-  
+
   // Fetch data to build the search index from (defaulting to level 1)
   const { data: topicsResponse } = useTopicsQuery(1);
   const topicsData = useMemo(() => topicsResponse?.data || [], [topicsResponse?.data]);
