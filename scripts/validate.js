@@ -44,14 +44,9 @@ const ROOT = path.resolve(__dirname, '..');
 // Configuration Constants
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REQUIRED_ENVS = [
-  'VITE_API_URL',
-  'VITE_APP_NAME'
-];
+const REQUIRED_ENVS = ['VITE_API_URL', 'VITE_APP_NAME'];
 
-const REQUIRED_ARTIFACTS = [
-  'dist/index.html'
-];
+const REQUIRED_ARTIFACTS = ['dist/index.html'];
 
 const MAX_BUNDLE_SIZE_MB = 5;
 
@@ -448,7 +443,10 @@ function checkNodeVersion(errors) {
 }
 
 function checkPnpm(errors, warns) {
-  const pnpm = spawnSync('pnpm', ['--version'], { shell: process.platform === 'win32', encoding: 'utf8' });
+  const pnpm = spawnSync('pnpm', ['--version'], {
+    shell: process.platform === 'win32',
+    encoding: 'utf8',
+  });
   if (pnpm.error || pnpm.status !== 0) {
     errors.push('pnpm not found — install via: npm install -g pnpm');
   } else {
@@ -482,7 +480,7 @@ function checkGitStatus(warns) {
 
 function validateEnv(errors, logWrite) {
   const envPath = path.join(ROOT, '.env.production');
-  
+
   if (!fs.existsSync(envPath)) {
     const msg = `Environment file missing:\n  .env.production`;
     errors.push(msg);
@@ -518,7 +516,7 @@ function validateEnv(errors, logWrite) {
       hasErrors = true;
     }
   }
-  
+
   if (logWrite && !hasErrors) {
     logWrite('Environment variables validated successfully.\n');
   }
@@ -579,7 +577,7 @@ function runPreflightChecks(c, allStages, logWrite) {
   checkNodeModules(errors);
   checkPackageJson(errors);
   checkGitStatus(warns);
-  
+
   validateEnv(errors, logWrite);
   validateScripts(errors, allStages, logWrite);
   validateBranch(warns, logWrite);

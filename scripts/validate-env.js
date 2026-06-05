@@ -36,7 +36,9 @@ if (fs.existsSync(envPath)) {
 const missingKeys = expectedKeys.filter((key) => !actualKeys.includes(key));
 
 if (missingKeys.length > 0) {
-  console.error(`❌ Missing required environment variables:\n${missingKeys.map(k => ` - ${k}`).join('\n')}`);
+  console.error(
+    `❌ Missing required environment variables:\n${missingKeys.map((k) => ` - ${k}`).join('\n')}`
+  );
   process.exit(1);
 }
 
