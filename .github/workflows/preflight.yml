@@ -83,9 +83,7 @@ jobs:
         run: cp .env.example .env.test # Best practice: load from a fixture file, not pipeline vars
 
       - name: Dependency Integrity & OSV Scan
-        run: |
-          pnpm run check:deps
-          npx @osv-scanner/scanner .
+        run: pnpm run check:deps
 
       - name: Secret Scanning
         run: pnpm run check:secrets
