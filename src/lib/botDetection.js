@@ -15,20 +15,13 @@ export async function isHeadlessBrowser() {
   // 2. PhantomJS globals
   if ('callPhantom' in window || '_phantom' in window) return true;
 
-  // 3. Empty plugins array — headless Chrome ships with none
-  if (navigator.plugins.length === 0) return true;
-
-  // 4. No languages configured
+  // 3. No languages configured
   if (!navigator.languages || navigator.languages.length === 0) return true;
 
-  // 5. Zero-dimension screen — some headless configs expose this
+  // 4. Zero-dimension screen — some headless configs expose this
   if (screen.width === 0 || screen.height === 0) return true;
 
-  // 6. Real Chrome always has window.chrome.runtime; headless often lacks it
-  if (/chrome/i.test(navigator.userAgent) && !(/** @type {any} */ (window).chrome?.runtime))
-    return true;
-
-  // 7. Permissions API anomaly — headless environments return inconsistent state
+  // 5. Permissions API anomaly — headless environments return inconsistent state
   try {
     const perm = await navigator.permissions.query({ name: 'notifications' });
     if (perm.state === 'denied' && Notification.permission === 'default') return true;
