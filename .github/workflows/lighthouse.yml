@@ -42,6 +42,11 @@ jobs:
 
       - name: Build application
         run: pnpm run build
+        env:
+          CI: true
+          VITE_API_BASE_URL: '__API_URL_PLACEHOLDER__'
+          VITE_ENV: '__ENV_PLACEHOLDER__'
+          VITE_REQUEST_KEY: '__REQUEST_KEY_PLACEHOLDER__'
 
       - name: Install Lighthouse CI CLI
         run: npm install -g @lhci/cli@0.13.0
@@ -49,4 +54,4 @@ jobs:
       - name: Run Lighthouse CI
         run: pnpm run lighthouse
         env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
