@@ -84,7 +84,18 @@ describe('validate.js', () => {
       const stages = buildStages(opts);
 
       expect(stages.length).toBe(10);
-      expect(stages.map((s) => s.key)).toEqual(['deps', 'security', 'types', 'lint', 'format', 'debug', 'testing', 'build', 'artifacts', 'bundle-size']);
+      expect(stages.map((s) => s.key)).toEqual([
+        'deps',
+        'security',
+        'types',
+        'lint',
+        'format',
+        'debug',
+        'testing',
+        'build',
+        'artifacts',
+        'bundle-size',
+      ]);
 
       const lintStage = stages.find((s) => s.key === 'lint');
       expect(lintStage.args).toContain('lint');
@@ -143,7 +154,8 @@ describe('validate.js', () => {
     it('should pass if all dependencies exist', () => {
       fs.existsSync.mockReturnValue(true);
       fs.readFileSync.mockImplementation((path) => {
-        if (path.includes('package.json')) return '{"scripts": {"build": "a","lint": "a","format:check": "a","test:ci": "a"}}';
+        if (path.includes('package.json'))
+          return '{"scripts": {"build": "a","lint": "a","format:check": "a","test:ci": "a"}}';
         return 'VITE_API_URL=http://localhost\nVITE_APP_NAME=App\n';
       });
       child_process.spawnSync.mockReturnValue({
@@ -161,7 +173,8 @@ describe('validate.js', () => {
     it('should fail if node_modules missing', () => {
       fs.existsSync.mockImplementation((p) => !p.includes('node_modules'));
       fs.readFileSync.mockImplementation((path) => {
-        if (path.includes('package.json')) return '{"scripts": {"build": "","lint": "","format:check": "","test:ci": ""}}';
+        if (path.includes('package.json'))
+          return '{"scripts": {"build": "","lint": "","format:check": "","test:ci": ""}}';
         return 'VITE_API_URL=http://localhost\nVITE_APP_NAME=App\n';
       });
       child_process.spawnSync.mockReturnValue({ status: 0, stdout: '8.0.0\n' });
@@ -176,7 +189,8 @@ describe('validate.js', () => {
       Object.defineProperty(process, 'versions', { value: { node: '20.0.0' } });
       fs.existsSync.mockReturnValue(true);
       fs.readFileSync.mockImplementation((path) => {
-        if (path.includes('package.json')) return '{"scripts": {"build": "","lint": "","format:check": "","test:ci": ""}}';
+        if (path.includes('package.json'))
+          return '{"scripts": {"build": "","lint": "","format:check": "","test:ci": ""}}';
         return 'VITE_API_URL=http://localhost\nVITE_APP_NAME=App\n';
       });
       child_process.spawnSync.mockReturnValue({ status: 0, stdout: '8.0.0\n' });
