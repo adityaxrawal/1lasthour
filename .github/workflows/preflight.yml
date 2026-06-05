@@ -93,7 +93,10 @@ jobs:
       - name: Tests
         run: pnpm run test:ci
         env:
-          DATABASE_URL: postgresql://${POSTGRES_USER:-ci_user}:${POSTGRES_PASSWORD:-ci_password}@localhost:5432/ci_db
+          DATABASE_URL: postgresql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@localhost:5432/${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ci_user
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: ci_db
 
       - name: Upload Coverage
         if: always()
