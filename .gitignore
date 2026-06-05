@@ -10,7 +10,6 @@ bower_components/
 dist/
 build/
 out/
-lib/
 *.tsbuildinfo
 .husky
 .github
