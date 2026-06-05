@@ -194,7 +194,7 @@ jobs:
     steps:
       - name: Check workflow status
         # Evaluates failure or cancellation. Removes 'skipped' to allow future conditional path filtering.
-        if: ${{ needs.static-analysis.result == 'failure' || needs.static-analysis.result == 'cancelled' || needs.test.result == 'failure' || needs.test.result == 'cancelled' || needs.build.result == 'failure' || needs.build.result == 'cancelled' || needs.lighthouse.result == 'failure' || needs.lighthouse.result == 'cancelled' }}
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
         run: |
           echo "::error::One or more required jobs failed or were cancelled."
           exit 1
