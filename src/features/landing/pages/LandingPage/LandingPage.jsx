@@ -13,8 +13,11 @@ import {
   CTABannerSection,
   Footer,
 } from '../../components';
-import { LANDING_NAV_LINKS, LANDING_FEATURES, LANDING_FAQS } from '../../constants/landingConstants';
-
+import {
+  LANDING_NAV_LINKS,
+  LANDING_FEATURES,
+  LANDING_FAQS,
+} from '../../constants/landingConstants';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 

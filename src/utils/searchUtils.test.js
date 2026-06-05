@@ -17,19 +17,15 @@ describe('searchUtils', () => {
             {
               title: 'Calculate future value',
               description: 'LOS description',
-              concepts: [
-                { id: 'concept1', text: 'Present Value', details: 'Value today' }
-              ],
-              formulas: [
-                { id: 'formula1', name: 'FV Formula', latex: 'FV = PV(1+r)^n' }
-              ]
-            }
-          ]
+              concepts: [{ id: 'concept1', text: 'Present Value', details: 'Value today' }],
+              formulas: [{ id: 'formula1', name: 'FV Formula', latex: 'FV = PV(1+r)^n' }],
+            },
+          ],
         },
-        null // testing null tolerance
-      ]
+        null, // testing null tolerance
+      ],
     },
-    null // testing null tolerance
+    null, // testing null tolerance
   ];
 
   beforeEach(() => {
@@ -98,7 +94,7 @@ describe('searchUtils', () => {
       ];
 
       const grouped = groupResultsByType(results);
-      
+
       expect(Object.keys(grouped)).toHaveLength(2);
       expect(grouped.topic).toHaveLength(2);
       expect(grouped.module).toHaveLength(1);

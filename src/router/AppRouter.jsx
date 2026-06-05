@@ -7,7 +7,6 @@ import { Loader } from '@/components/ui';
 import { useProtection } from '@/hooks/useProtection';
 import { enforceHumanBrowser } from '@/lib/botDetection';
 
-
 // Lazy-loaded pages — each imports directly for proper code splitting
 const LandingPage = lazy(() => import('@/features/landing/pages/LandingPage'));
 const AboutExamPage = lazy(() => import('@/features/cfa/pages/AboutExamPage/AboutExamPage'));
@@ -20,7 +19,9 @@ const TopicPage = lazy(() => import('@/features/cfa/pages/TopicPage'));
 const NotFound = lazy(() => import('@/features/misc/pages/NotFound/NotFound'));
 const ThemeDemo = lazy(() => import('@/features/misc/pages/ThemeDemo/ThemeDemo'));
 const PrivacyPolicy = lazy(() => import('@/features/cfa/pages/PrivacyPolicyPage'));
-const TermsAndConditions = lazy(() => import('@/features/cfa/pages/TermsAndConditionsPage/TermsAndConditionsPage'));
+const TermsAndConditions = lazy(
+  () => import('@/features/cfa/pages/TermsAndConditionsPage/TermsAndConditionsPage')
+);
 
 export function AppRouter() {
   useProtection();

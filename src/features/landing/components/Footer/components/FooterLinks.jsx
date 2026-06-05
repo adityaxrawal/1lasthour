@@ -3,11 +3,16 @@ import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 const FooterLinkItem = memo(function FooterLinkItem({ to, href, children }) {
-  const className = "text-white transition-colors hover:text-secondary";
+  const className = 'text-white transition-colors hover:text-secondary';
   if (href) {
     return (
       <li>
-        <a href={href} className={className} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+        <a
+          href={href}
+          className={className}
+          target={href.startsWith('http') ? '_blank' : undefined}
+          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
           {children}
         </a>
       </li>
@@ -21,14 +26,16 @@ const FooterLinkItem = memo(function FooterLinkItem({ to, href, children }) {
     </li>
   );
 });
-FooterLinkItem.propTypes = { to: PropTypes.string, href: PropTypes.string, children: PropTypes.node.isRequired };
+FooterLinkItem.propTypes = {
+  to: PropTypes.string,
+  href: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 const FooterLinkGroup = memo(function FooterLinkGroup({ title, links }) {
   return (
     <div>
-      <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-white">
-        {title}
-      </h4>
+      <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-white">{title}</h4>
       <ul className="space-y-2 text-sm text-white">
         {links.map((link, i) => (
           <FooterLinkItem key={i} to={link.to} href={link.href}>
@@ -39,7 +46,10 @@ const FooterLinkGroup = memo(function FooterLinkGroup({ title, links }) {
     </div>
   );
 });
-FooterLinkGroup.propTypes = { title: PropTypes.string.isRequired, links: PropTypes.arrayOf(PropTypes.object).isRequired };
+FooterLinkGroup.propTypes = {
+  title: PropTypes.string.isRequired,
+  links: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 const QUICK_LINKS = [
   { to: '/dashboard', label: 'Dashboard' },

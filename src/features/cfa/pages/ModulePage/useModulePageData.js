@@ -36,7 +36,7 @@ export function useModuleProgress(moduleData) {
     const outcomes = moduleData.learningOutcomes;
     const outcomesLength = outcomes ? outcomes.length : 0;
     const hasLOSData = outcomesLength > 0;
-    
+
     return {
       hasLOSData,
       losCount: moduleData.losCount || outcomesLength,

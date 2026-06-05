@@ -69,7 +69,10 @@ const LatestReadings = memo(function LatestReadings({ readings, basePath }) {
     </div>
   );
 });
-LatestReadings.propTypes = { readings: PropTypes.array.isRequired, basePath: PropTypes.string.isRequired };
+LatestReadings.propTypes = {
+  readings: PropTypes.array.isRequired,
+  basePath: PropTypes.string.isRequired,
+};
 
 const PopularTags = memo(function PopularTags({ tags }) {
   return (

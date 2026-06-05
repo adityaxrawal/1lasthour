@@ -43,7 +43,9 @@ export const ThemeProvider = ({ children }) => {
   useThemePersistence(theme, setThemeState);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((currentTheme) => (currentTheme === THEME_CONSTANTS.LIGHT ? THEME_CONSTANTS.DARK : THEME_CONSTANTS.LIGHT));
+    setThemeState((currentTheme) =>
+      currentTheme === THEME_CONSTANTS.LIGHT ? THEME_CONSTANTS.DARK : THEME_CONSTANTS.LIGHT
+    );
   }, []);
 
   const setTheme = useCallback((newTheme) => {

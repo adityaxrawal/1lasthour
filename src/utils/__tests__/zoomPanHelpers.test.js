@@ -24,13 +24,13 @@ describe('zoomPanHelpers', () => {
     const e = { clientX: 200, clientY: 300 };
     const startPos = { x: 100, y: 150 };
     const scrollPos = { left: 500, top: 600 };
-    
+
     // dx = 100, dy = 150
     // new left = 500 - 100 = 400
     // new top = 600 - 150 = 450
     expect(calculatePan(e, startPos, scrollPos)).toEqual({
       left: 400,
-      top: 450
+      top: 450,
     });
   });
 });

@@ -1,4 +1,13 @@
-import { BookOpen, Network, Clock, Target, Star, FileText, CheckCircle2, BarChart2 } from 'lucide-react';
+import {
+  BookOpen,
+  Network,
+  Clock,
+  Target,
+  Star,
+  FileText,
+  CheckCircle2,
+  BarChart2,
+} from 'lucide-react';
 import React, { memo } from 'react';
 
 const DIFFICULTY_REASONS = [
@@ -51,7 +60,6 @@ const HELP_ITEMS = [
 export const DifficultySection = memo(function DifficultySection() {
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-
       {/* ── Left: Is The CFA Exam Difficult? ────────────────────────── */}
       <div className="space-y-5">
         <h2 className="text-sm font-bold tracking-widest text-brand uppercase">
@@ -84,8 +92,8 @@ export const DifficultySection = memo(function DifficultySection() {
           <div className="mt-8 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 dark:border-amber-900/30 dark:bg-amber-900/10">
             <Star size={18} className="mt-0.5 shrink-0 fill-amber-400 text-amber-400" />
             <p className="text-sm text-ink-secondary">
-              <span className="font-bold text-ink">Good news:</span>{' '}
-              With a structured plan and the right resources, thousands of candidates pass every year—you can be one of them.
+              <span className="font-bold text-ink">Good news:</span> With a structured plan and the
+              right resources, thousands of candidates pass every year—you can be one of them.
             </p>
           </div>
         </div>
@@ -106,7 +114,7 @@ export const DifficultySection = memo(function DifficultySection() {
                 </div>
                 <div className="text-sm text-ink-secondary">
                   <span className="font-bold text-ink">{bold}</span>
-                  {rest && <>{' '}{rest}</>}
+                  {rest && <> {rest}</>}
                 </div>
               </li>
             ))}

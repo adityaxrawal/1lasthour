@@ -37,7 +37,9 @@ const ModuleHeader = memo(function ModuleHeader({
             </div>
             <div>
               <div className="text-2xl sm:text-3xl font-bold text-ink">{losCount}</div>
-              <div className="text-xs sm:text-sm font-medium text-ink-secondary leading-tight">Learning Outcomes</div>
+              <div className="text-xs sm:text-sm font-medium text-ink-secondary leading-tight">
+                Learning Outcomes
+              </div>
             </div>
           </div>
           <div className="flex flex-1 items-center gap-3 sm:gap-4 rounded-xl border border-border bg-surface p-4 sm:px-6 sm:py-5 min-w-[140px] sm:min-w-[200px]">
@@ -46,7 +48,9 @@ const ModuleHeader = memo(function ModuleHeader({
             </div>
             <div>
               <div className="text-2xl sm:text-3xl font-bold text-ink">{totalConcepts}</div>
-              <div className="text-xs sm:text-sm font-medium text-ink-secondary leading-tight">Key Concepts</div>
+              <div className="text-xs sm:text-sm font-medium text-ink-secondary leading-tight">
+                Key Concepts
+              </div>
             </div>
           </div>
           <div className="flex flex-1 items-center gap-3 sm:gap-4 rounded-xl border border-border bg-surface p-4 sm:px-6 sm:py-5 min-w-[140px] sm:min-w-[200px]">
@@ -55,7 +59,9 @@ const ModuleHeader = memo(function ModuleHeader({
             </div>
             <div>
               <div className="text-2xl sm:text-3xl font-bold text-ink">{totalFormulas}</div>
-              <div className="text-xs sm:text-sm font-medium text-ink-secondary leading-tight">Formulas</div>
+              <div className="text-xs sm:text-sm font-medium text-ink-secondary leading-tight">
+                Formulas
+              </div>
             </div>
           </div>
         </div>

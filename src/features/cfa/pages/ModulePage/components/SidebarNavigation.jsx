@@ -2,7 +2,12 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-const SidebarNavigation = memo(function SidebarNavigation({ topicData, basePath, topicId, moduleId }) {
+const SidebarNavigation = memo(function SidebarNavigation({
+  topicData,
+  basePath,
+  topicId,
+  moduleId,
+}) {
   return (
     <div>
       <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-ink-secondary">

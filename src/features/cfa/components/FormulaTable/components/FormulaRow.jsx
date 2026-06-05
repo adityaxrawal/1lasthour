@@ -34,9 +34,7 @@ CheckboxCell.propTypes = {
 const FormulaNameCell = memo(function FormulaNameCell({ name }) {
   return (
     <td className="w-1/4 px-4 py-4 align-top">
-      <div className="font-medium transition-colors text-ink group-hover:text-brand">
-        {name}
-      </div>
+      <div className="font-medium transition-colors text-ink group-hover:text-brand">{name}</div>
     </td>
   );
 });
@@ -120,11 +118,21 @@ const FormulaRow = memo(function FormulaRow({
         ${isSelected ? 'bg-brand-subtle' : 'hover:bg-canvas-hover'}
       `}
     >
-      <CheckboxCell isSelected={isSelected} onToggleSelect={onToggleSelect} index={index} name={formula.name} />
+      <CheckboxCell
+        isSelected={isSelected}
+        onToggleSelect={onToggleSelect}
+        index={index}
+        name={formula.name}
+      />
       <FormulaNameCell name={formula.name} />
       <ExpressionCell formula={formula.formula} />
       <NotesCell where={formula.where} />
-      <CopyActionCell formulaObj={formula} index={index} copiedIndex={copiedIndex} onCopy={onCopy} />
+      <CopyActionCell
+        formulaObj={formula}
+        index={index}
+        copiedIndex={copiedIndex}
+        onCopy={onCopy}
+      />
     </tr>
   );
 });

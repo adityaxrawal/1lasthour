@@ -59,9 +59,7 @@ function LOSFormulas({ formulas }) {
   return (
     <div className="formulas-column bg-surface p-6" id="formulas">
       <h4 className="mb-6 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-ink-secondary">
-        <span className="font-serif italic text-warning font-bold text-lg leading-none">
-          ƒ
-        </span>
+        <span className="font-serif italic text-warning font-bold text-lg leading-none">ƒ</span>
         <span>Formulas</span>
       </h4>
       <div className="space-y-4">

@@ -113,7 +113,7 @@ const ZoomableImageModal = memo(function ZoomableImageModal({
       />
       <div className="animate-in fade-in zoom-in-95 relative z-10 flex h-[90vh] w-full max-w-[95vw] flex-col overflow-hidden rounded-3xl border border-slate-700/50 bg-slate-900/50 shadow-2xl duration-200">
         <ModalToolbar onClose={onClose} />
-        
+
         <PanContainer
           containerRef={containerRef}
           imageRef={imageRef}

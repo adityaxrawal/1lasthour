@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-const ModuleBreadcrumbs = memo(function ModuleBreadcrumbs({ basePath, topicId, topicData, moduleIndex }) {
+const ModuleBreadcrumbs = memo(function ModuleBreadcrumbs({
+  basePath,
+  topicId,
+  topicData,
+  moduleIndex,
+}) {
   return (
     <div className="flex items-center gap-2 text-sm font-medium text-ink-secondary sm:gap-3">
       <Link

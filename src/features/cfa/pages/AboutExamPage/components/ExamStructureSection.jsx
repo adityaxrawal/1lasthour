@@ -31,21 +31,13 @@ SessionCard.displayName = 'SessionCard';
 const SESSION_1 = {
   title: 'Session 1',
   duration: '135 minutes',
-  details: [
-    '90 multiple-choice questions',
-    '3 answer choices (A, B, C)',
-    'Computer-based testing',
-  ],
+  details: ['90 multiple-choice questions', '3 answer choices (A, B, C)', 'Computer-based testing'],
 };
 
 const SESSION_2 = {
   title: 'Session 2',
   duration: '135 minutes',
-  details: [
-    '90 multiple-choice questions',
-    '3 answer choices (A, B, C)',
-    'Computer-based testing',
-  ],
+  details: ['90 multiple-choice questions', '3 answer choices (A, B, C)', 'Computer-based testing'],
 };
 
 export const ExamStructureSection = memo(function ExamStructureSection() {
@@ -69,7 +61,8 @@ export const ExamStructureSection = memo(function ExamStructureSection() {
           <div className="flex flex-row md:flex-col items-center justify-center py-4 md:py-0 md:px-6">
             <div className="flex-1 md:flex-none h-[1px] md:h-full w-full md:w-0 border-t md:border-t-0 md:border-l border-dashed border-border" />
             <div className="px-4 md:px-2 md:py-4 text-center text-xs font-semibold uppercase tracking-wider text-ink-tertiary bg-surface whitespace-nowrap">
-              Optional<br className="hidden md:block" /> Break
+              Optional
+              <br className="hidden md:block" /> Break
             </div>
             <div className="flex-1 md:flex-none h-[1px] md:h-full w-full md:w-0 border-t md:border-t-0 md:border-l border-dashed border-border" />
           </div>
