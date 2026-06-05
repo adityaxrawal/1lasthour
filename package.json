@@ -9,11 +9,12 @@
     "build": "vite build",
     "build:fast": "vite build",
     "preview": "vite preview",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --fix",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0 --cache",
+    "lint:fix": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --fix --cache",
     "lint:log": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --output-file eslint.log || true",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"scripts/*.js\" --no-error-on-unmatched-pattern",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"scripts/*.js\" --no-error-on-unmatched-pattern",
+    "typecheck": "tsc -p jsconfig.json --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
@@ -45,6 +46,7 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
+    "@lhci/cli": "0.15.1",
     "@secretlint/secretlint-rule-preset-recommend": "^8.4.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@testing-library/jest-dom": "^6.6.3",
@@ -64,14 +66,15 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
-    "jest-axe": "^9.0.0",
     "jsdom": "^25.0.1",
+    "license-checker": "^25.0.1",
     "path": "^0.12.7",
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
     "rollup-plugin-visualizer": "^5.12.0",
     "secretlint": "^8.4.0",
     "tailwindcss": "^4.1.18",
+    "typescript": "^6.0.3",
     "vite": "^7.2.4",
     "vitest": "^4.1.8"
   },
@@ -79,5 +82,11 @@
     "node": "22.x",
     "pnpm": ">=8.0.0"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.0",
+  "pnpm": {
+    "overrides": {
+      "tmp": "^0.2.6",
+      "uuid": "^11.1.1"
+    }
+  }
 }
