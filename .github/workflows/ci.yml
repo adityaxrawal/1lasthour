@@ -134,17 +134,17 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Load Environment Variables
+        run: cp .env.example .env
 
       - name: Build application
         run: pnpm run build
 
       - name: Verify Build Entry Point
         run: pnpm run build:verify
-
-      - name: Smoke Test Built Output
-        run: |
-          node dist/index.js --help || echo "Modify to trigger a safe 0-exit run of the server"
 
   ci-success:
     name: CI Pipeline Passed

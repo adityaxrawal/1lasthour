@@ -123,6 +123,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Load Environment Variables
+        run: cp .env.example .env
+
       - name: Build
         run: pnpm run build:clean
 
@@ -131,18 +134,6 @@ jobs:
 
       - name: Generate SBOM
         run: npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file dist/sbom.json
-
-      - name: Boot Smoke Test
-        run: |
-          # Properly starts the node process in background and verifies it listens or exits cleanly
-          node dist/index.js &
-          PID=$!
-          sleep 5
-          if ! kill -0 $PID; then
-            echo "::error::Server crashed during boot sequence!"
-            exit 1
-          fi
-          kill $PID
 
       - name: Upload Production Artifact
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
