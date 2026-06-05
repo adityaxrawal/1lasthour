@@ -12,7 +12,6 @@ build/
 out/
 *.tsbuildinfo
 .husky
-.github
 
 # Logs
 logs/

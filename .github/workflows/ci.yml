@@ -1,0 +1,181 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - prod-be
+      - dev-be
+  pull_request:
+    branches:
+      - prod-be
+      - dev-be
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-backend-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/prod-be' }}
+
+env:
+  CI: true
+  NODE_ENV: test
+  # Explicit dummy variables ensure tests don't fail due to missing environment configs
+  PORT: 8080
+  JWT_SECRET: "ci-dummy-secret-do-not-use-in-prod"
+  DATABASE_URL: "postgres://ci:ci@localhost:5432/ci_db"
+
+jobs:
+  static-analysis:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for secrets
+        run: pnpm run check:secrets
+
+      - name: Check circular dependencies
+        run: pnpm run check:circular
+
+      - name: Check formatting
+        run: pnpm run format:check
+
+      - name: Run ESLint
+        run: pnpm run lint
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Type check
+        run: pnpm run typecheck
+
+  test:
+    name: Unit & Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: ci_user
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: ci_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Load Environment Variables
+        run: cp .env.example .env.test
+
+      - name: Run tests
+        run: pnpm run test:ci
+        env:
+          DATABASE_URL: postgresql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@localhost:5432/${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ci_user
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: ci_db
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: be-coverage-report
+          path: coverage/
+          retention-days: 14
+
+  security:
+    name: Dependency Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Dependency Security Audit
+        run: pnpm run check:audit
+
+  build:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Load Environment Variables
+        run: cp .env.example .env
+
+      - name: Build application
+        run: pnpm run build
+
+      - name: Verify Build Entry Point
+        run: pnpm run build:verify
+
+  ci-success:
+    name: CI Pipeline Passed
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [static-analysis, typecheck, test, security, build]
+    steps:
+      - name: Check Status
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: |
+          echo "One or more parallel jobs failed or were cancelled."
+          exit 1
