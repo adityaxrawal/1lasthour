@@ -62,7 +62,7 @@ jobs:
 
       - run: pnpm run format:check
       - run: pnpm run lint
-      - run: pnpm audit --audit-level=high
+      - run: pnpm audit --prod --audit-level=high
 
       - name: Run OSV-Scanner
         uses: google/osv-scanner-action/osv-scanner-action@19ec1116569a47416e11a45848722b1af31a857b # v1.9.0
@@ -135,16 +135,18 @@ jobs:
         run: pnpm run check:env
         env:
           CI: true
-          VITE_API_URL: 'https://api.dummy.local'
-          VITE_ENVIRONMENT: ci
+          VITE_API_BASE_URL: 'https://api.dummy.local'
+          VITE_ENV: ci
+          VITE_REQUEST_KEY: 'dummy-key'
 
       # HIGH PRIORITY FIX: Provide runtime placeholders instead of baking PROD secrets into CI builds
       - name: Build application
         run: pnpm run build
         env:
           CI: true
-          VITE_API_URL: '__API_URL_PLACEHOLDER__'
-          VITE_ENVIRONMENT: '__ENV_PLACEHOLDER__'
+          VITE_API_BASE_URL: '__API_URL_PLACEHOLDER__'
+          VITE_ENV: '__ENV_PLACEHOLDER__'
+          VITE_REQUEST_KEY: '__REQUEST_KEY_PLACEHOLDER__'
 
       - run: pnpm run check:bundle
 
