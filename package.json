@@ -9,8 +9,8 @@
     "build": "vite build",
     "build:fast": "vite build",
     "preview": "vite preview",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --fix",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0 --cache",
+    "lint:fix": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --fix --cache",
     "lint:log": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --output-file eslint.log || true",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\"",
@@ -29,7 +29,8 @@
     "analyze": "vite build && open dist/stats.html",
     "lighthouse": "lhci autorun",
     "clean": "rm -rf dist node_modules/.vite",
-    "clean:all": "rm -rf dist node_modules"
+    "clean:all": "rm -rf dist node_modules",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.21",
@@ -72,6 +73,7 @@
     "rollup-plugin-visualizer": "^5.12.0",
     "secretlint": "^8.4.0",
     "tailwindcss": "^4.1.18",
+    "typescript": "^6.0.3",
     "vite": "^7.2.4",
     "vitest": "^4.1.8"
   },
