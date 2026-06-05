@@ -30,6 +30,7 @@ src/features/cfa/data/
 
 # Testing
 coverage/
+.lighthouseci/
 
 # Ignore Local Files
 local
