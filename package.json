@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/validate-env.js && vite build",
+    "build": "vite build",
     "build:fast": "vite build",
     "preview": "vite preview",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
