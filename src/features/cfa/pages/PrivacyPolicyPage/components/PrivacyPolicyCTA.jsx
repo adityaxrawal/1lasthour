@@ -18,9 +18,9 @@ const PrivacyPolicyCTA = memo(function PrivacyPolicyCTA() {
             </p>
           </div>
         </div>
-        <a 
-          href="https://1lasthour.com" 
-          target="_blank" 
+        <a
+          href="https://1lasthour.com"
+          target="_blank"
           rel="noopener noreferrer"
           className="px-6 py-3 bg-[#E76F51] text-white font-bold rounded-xl whitespace-nowrap hover:bg-[#D65F42] transition-colors duration-200 flex items-center gap-2 shadow-sm"
         >

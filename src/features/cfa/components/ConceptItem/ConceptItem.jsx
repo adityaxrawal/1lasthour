@@ -63,9 +63,7 @@ const ConceptDetails = memo(function ConceptDetails({ isExpanded, details }) {
         isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
       )}
     >
-      <p className="border-t border-border pt-2 text-xs text-ink-secondary">
-        {details}
-      </p>
+      <p className="border-t border-border pt-2 text-xs text-ink-secondary">{details}</p>
     </div>
   );
 });
@@ -83,7 +81,10 @@ const ConceptActions = memo(function ConceptActions({ isExpanded, hasDetails }) 
     </button>
   );
 });
-ConceptActions.propTypes = { isExpanded: PropTypes.bool.isRequired, hasDetails: PropTypes.bool.isRequired };
+ConceptActions.propTypes = {
+  isExpanded: PropTypes.bool.isRequired,
+  hasDetails: PropTypes.bool.isRequired,
+};
 
 // ─── Component ────────────────────────────────────────────────────────────────
 

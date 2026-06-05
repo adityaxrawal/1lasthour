@@ -33,21 +33,33 @@ import { useModulePage } from './useModulePage';
 describe('useModulePage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    
+
     // Default mocks
     routerDom.useParams.mockReturnValue({ topicId: 't1', moduleId: 'm1' });
     useLevelData.mockReturnValue({ basePath: '/cfa', level: 1 });
-    
-    useTopicsQuery.mockReturnValue({ data: { data: [{ id: 't1' }, { id: 't2' }] }, isLoading: false, isError: false });
-    useTopicQuery.mockReturnValue({ 
-      data: { data: { id: 't1', modules: [{ id: 'm1' }, { id: 'm2' }] } }, 
-      isLoading: false, 
-      isError: false 
+
+    useTopicsQuery.mockReturnValue({
+      data: { data: [{ id: 't1' }, { id: 't2' }] },
+      isLoading: false,
+      isError: false,
     });
-    useModuleQuery.mockReturnValue({ 
-      data: { data: { id: 'm1', learningOutcomes: [{ id: 'los1' }], losCount: 1, conceptCount: 2, formulaCount: 3 } }, 
-      isLoading: false, 
-      isError: false 
+    useTopicQuery.mockReturnValue({
+      data: { data: { id: 't1', modules: [{ id: 'm1' }, { id: 'm2' }] } },
+      isLoading: false,
+      isError: false,
+    });
+    useModuleQuery.mockReturnValue({
+      data: {
+        data: {
+          id: 'm1',
+          learningOutcomes: [{ id: 'los1' }],
+          losCount: 1,
+          conceptCount: 2,
+          formulaCount: 3,
+        },
+      },
+      isLoading: false,
+      isError: false,
     });
   });
 
@@ -95,14 +107,13 @@ describe('useModulePage', () => {
     const { result } = renderHook(() => useModulePage());
     expect(result.current.moduleIndex).toBe(0);
   });
-  
+
   it('should fallback stats when missing explicit counts', () => {
     useModuleQuery.mockReturnValue({
-      data: { data: { learningOutcomes: [{}, {}] } }
+      data: { data: { learningOutcomes: [{}, {}] } },
     });
     const { result } = renderHook(() => useModulePage());
     expect(result.current.losCount).toBe(2);
     expect(result.current.totalConcepts).toBe(0);
   });
 });
-

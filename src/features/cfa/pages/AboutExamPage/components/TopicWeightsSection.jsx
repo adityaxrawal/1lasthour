@@ -2,7 +2,13 @@ import { CheckCircle2 } from 'lucide-react';
 import React, { memo } from 'react';
 
 const TOPICS = [
-  { id: '01', name: 'Ethical & Professional Standards', weight: '15 – 20%', score: 90, tier: 'high' },
+  {
+    id: '01',
+    name: 'Ethical & Professional Standards',
+    weight: '15 – 20%',
+    score: 90,
+    tier: 'high',
+  },
   { id: '02', name: 'Quantitative Methods', weight: '6 – 9%', score: 38, tier: 'medium' },
   { id: '03', name: 'Economics', weight: '6 – 9%', score: 38, tier: 'medium' },
   { id: '04', name: 'Financial Statement Analysis', weight: '11 – 14%', score: 65, tier: 'high' },
@@ -16,9 +22,9 @@ const TOPICS = [
 
 // Use explicit colors (not dynamic classes) so Tailwind won't purge them
 const TIER_BAR_COLOR = {
-  high: '#db5a33',    // highlight orange
-  medium: '#f59e0b',  // amber-400
-  low: '#22c55e',     // green-500
+  high: '#db5a33', // highlight orange
+  medium: '#f59e0b', // amber-400
+  low: '#22c55e', // green-500
 };
 
 const TIER_LEGEND_COLOR = {

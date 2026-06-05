@@ -27,9 +27,7 @@ export function BreadcrumbItem({ crumb, idx, isLast }) {
           {crumb.label}
         </Link>
       ) : (
-        <span className={isLast ? 'font-medium text-ink' : ''}>
-          {crumb.label}
-        </span>
+        <span className={isLast ? 'font-medium text-ink' : ''}>{crumb.label}</span>
       )}
     </div>
   );

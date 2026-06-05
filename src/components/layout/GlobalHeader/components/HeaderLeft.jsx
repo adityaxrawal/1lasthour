@@ -25,12 +25,7 @@ const HeaderLeft = memo(function HeaderLeft({ isLanding, searchParams, handleSea
       </Link>
 
       {/* Search Input (App Only) */}
-      {!isLanding && (
-        <SearchInput
-          value={searchParams.get('q') || ''}
-          onChange={handleSearch}
-        />
-      )}
+      {!isLanding && <SearchInput value={searchParams.get('q') || ''} onChange={handleSearch} />}
     </div>
   );
 });

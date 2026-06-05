@@ -35,7 +35,9 @@ export const cfaApi = {
    * @returns {Promise<Object>} Topic details
    */
   getTopicById: async (topicId, level) => {
-    return signedFetch(`/api/v1/topics/${encodeURIComponent(cleanId(topicId))}?level=${encodeURIComponent(level)}`);
+    return signedFetch(
+      `/api/v1/topics/${encodeURIComponent(cleanId(topicId))}?level=${encodeURIComponent(level)}`
+    );
   },
 
   /**
@@ -46,7 +48,8 @@ export const cfaApi = {
    * @returns {Promise<Object>} Module details
    */
   getModuleById: async (topicId, moduleId, level) => {
-    return signedFetch(`/api/v1/topics/${encodeURIComponent(cleanId(topicId))}/modules/${encodeURIComponent(cleanId(moduleId))}?level=${encodeURIComponent(level)}`);
+    return signedFetch(
+      `/api/v1/topics/${encodeURIComponent(cleanId(topicId))}/modules/${encodeURIComponent(cleanId(moduleId))}?level=${encodeURIComponent(level)}`
+    );
   },
 };
-

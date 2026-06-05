@@ -18,7 +18,7 @@ describe('getTOCItems', () => {
       { href: '#concepts', label: 'Key Concepts', className: 'font-medium' },
       { href: '#formulas', label: 'Key Formulas', className: 'font-medium' },
       { href: '#tips', label: 'Exam Tips', className: '' },
-      { href: '#mistakes', label: 'Common Mistakes', className: '' }
+      { href: '#mistakes', label: 'Common Mistakes', className: '' },
     ];
     expect(getTOCItems(false, legacyModule)).toEqual(expected);
   });
@@ -31,14 +31,12 @@ describe('getTOCItems', () => {
 
   it('should return LOS sections when LOS data is present', () => {
     const losModule = {
-      learningOutcomes: [
-        { formulas: [1] }
-      ]
+      learningOutcomes: [{ formulas: [1] }],
     };
     const expected = [
       { href: '#los-header', label: 'Interpret Interest Rates', className: 'font-medium' },
       { href: '#concepts', label: 'Key Concepts', className: 'font-medium' },
-      { href: '#formulas', label: 'Formulas', className: 'font-medium' }
+      { href: '#formulas', label: 'Formulas', className: 'font-medium' },
     ];
     expect(getTOCItems(true, losModule)).toEqual(expected);
   });

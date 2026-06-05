@@ -34,8 +34,16 @@ export function useTopicPage() {
   const { topicId } = useParams();
   const { basePath, level } = useLevelData();
 
-  const { data: topicsData, isLoading: isTopicsLoading, isError: isTopicsError } = useTopicsData(level);
-  const { data: topicData, isLoading: isTopicLoading, isError: isTopicError } = useTopicData(topicId, level);
+  const {
+    data: topicsData,
+    isLoading: isTopicsLoading,
+    isError: isTopicsError,
+  } = useTopicsData(level);
+  const {
+    data: topicData,
+    isLoading: isTopicLoading,
+    isError: isTopicError,
+  } = useTopicData(topicId, level);
 
   const sidebarTopics = useSidebarTopics(topicsData, basePath);
 

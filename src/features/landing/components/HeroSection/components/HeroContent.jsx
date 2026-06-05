@@ -31,8 +31,8 @@ const HeroContent = memo(function HeroContent({ onScrollTo }) {
         className="mx-auto mb-10 max-w-xl animate-fade-in text-lg leading-relaxed text-ink-secondary md:text-xl"
         style={{ animationDelay: '200ms' }}
       >
-        Structured CFA Level 1 study materials — formulas, key concepts, and exam strategies —
-        all in one beautiful, searchable interface.
+        Structured CFA Level 1 study materials — formulas, key concepts, and exam strategies — all
+        in one beautiful, searchable interface.
       </p>
 
       {/* CTAs */}

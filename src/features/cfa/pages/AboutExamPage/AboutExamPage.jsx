@@ -22,13 +22,13 @@ const AboutExamPage = memo(function AboutExamPage() {
   return (
     <div className="min-h-screen font-sans bg-bg text-ink selection:bg-brand-subtle selection:text-brand">
       <GlobalHeader navLinks={LANDING_NAV_LINKS} onScrollTo={scrollTo} />
-      
+
       <main className="pt-16">
         <HeroSection />
-        
+
         <div className="mx-auto max-w-[1400px] px-6 py-16 space-y-16">
           <AtAGlanceSection />
-          
+
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             <div className="lg:col-span-8">
               <ExamStructureSection />
@@ -37,7 +37,7 @@ const AboutExamPage = memo(function AboutExamPage() {
               <QuestionFormatSection />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             <div className="lg:col-span-8">
               <TopicWeightsSection />
@@ -46,15 +46,15 @@ const AboutExamPage = memo(function AboutExamPage() {
               <PassingScoreSection />
             </div>
           </div>
-          
+
           <RegistrationTimelineSection />
-          
+
           <DifficultySection />
-          
+
           <SuccessCTABanner />
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

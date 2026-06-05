@@ -30,16 +30,13 @@ describe('GlobalSearchResults', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    
-    useSearchParams.mockReturnValue([
-      new URLSearchParams({ q: 'test' }),
-      mockSetSearchParams
-    ]);
-    
+
+    useSearchParams.mockReturnValue([new URLSearchParams({ q: 'test' }), mockSetSearchParams]);
+
     useTopicsQuery.mockReturnValue({
-      data: { data: [{ id: 'topic1', title: 'Test Topic' }] }
+      data: { data: [{ id: 'topic1', title: 'Test Topic' }] },
     });
-    
+
     globalSearch.mockReturnValue([]);
     groupResultsByType.mockReturnValue({});
   });
@@ -61,8 +58,10 @@ describe('GlobalSearchResults', () => {
       </MemoryRouter>
     );
     expect(getByText('No results found')).toBeInTheDocument();
-    expect(getByText(/We couldn't find any topics, modules, or concepts matching/)).toBeInTheDocument();
-    
+    expect(
+      getByText(/We couldn't find any topics, modules, or concepts matching/)
+    ).toBeInTheDocument();
+
     fireEvent.click(getByText('Clear search'));
     expect(mockSetSearchParams).toHaveBeenCalledWith({});
   });
@@ -74,7 +73,7 @@ describe('GlobalSearchResults', () => {
       { id: '3', type: 'concept', title: 'Concept Result', path: '/path3' },
       { id: '4', type: 'formula', title: 'Formula Result', path: '/path4' },
     ];
-    
+
     globalSearch.mockReturnValue(mockResults);
     groupResultsByType.mockReturnValue({
       topic: [mockResults[0]],
@@ -107,10 +106,14 @@ describe('GlobalSearchResults', () => {
     expect(getByText('Formulas')).toBeInTheDocument();
     expect(getByText('Formula Result')).toBeInTheDocument();
   });
-  
+
   it('handles grammar correctly for 1 result', () => {
-    globalSearch.mockReturnValue([{ id: '1', type: 'topic', title: 'Single Result', path: '/path1' }]);
-    groupResultsByType.mockReturnValue({ topic: [{ id: '1', type: 'topic', title: 'Single Result', path: '/path1' }] });
+    globalSearch.mockReturnValue([
+      { id: '1', type: 'topic', title: 'Single Result', path: '/path1' },
+    ]);
+    groupResultsByType.mockReturnValue({
+      topic: [{ id: '1', type: 'topic', title: 'Single Result', path: '/path1' }],
+    });
 
     const { getByText } = render(
       <MemoryRouter>
@@ -122,8 +125,28 @@ describe('GlobalSearchResults', () => {
   });
 
   it('renders context and description if present', () => {
-    globalSearch.mockReturnValue([{ id: '1', type: 'topic', title: 'Topic', path: '/path', context: 'Test Context', description: 'Test Description' }]);
-    groupResultsByType.mockReturnValue({ topic: [{ id: '1', type: 'topic', title: 'Topic', path: '/path', context: 'Test Context', description: 'Test Description' }] });
+    globalSearch.mockReturnValue([
+      {
+        id: '1',
+        type: 'topic',
+        title: 'Topic',
+        path: '/path',
+        context: 'Test Context',
+        description: 'Test Description',
+      },
+    ]);
+    groupResultsByType.mockReturnValue({
+      topic: [
+        {
+          id: '1',
+          type: 'topic',
+          title: 'Topic',
+          path: '/path',
+          context: 'Test Context',
+          description: 'Test Description',
+        },
+      ],
+    });
 
     const { getByText } = render(
       <MemoryRouter>

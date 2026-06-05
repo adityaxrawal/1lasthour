@@ -77,9 +77,9 @@ const CFALevel1Page = memo(function CFALevel1Page() {
 
   if (isError) {
     return (
-      <ErrorState 
-        title="Error loading data" 
-        message="There was a problem fetching the topics. Please try again later." 
+      <ErrorState
+        title="Error loading data"
+        message="There was a problem fetching the topics. Please try again later."
       />
     );
   }
