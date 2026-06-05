@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .vite
+.fallow
 
 # Ignore Data
 src/features/cfa/data/
@@ -36,6 +37,7 @@ pending.md
 .antigravity
 .ui-images
 about-exam-hero-backup.png
+scripts/
 
 # Env files
 .env

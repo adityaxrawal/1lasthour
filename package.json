@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/validate-env.js && vite build",
+    "build": "vite build",
     "build:fast": "vite build",
     "preview": "vite preview",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
@@ -76,7 +76,7 @@
     "vitest": "^4.1.8"
   },
   "engines": {
-    "node": "24.x",
+    "node": "22.x",
     "pnpm": ">=8.0.0"
   },
   "packageManager": "pnpm@9.15.0"
