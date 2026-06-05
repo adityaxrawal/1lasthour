@@ -1,2 +1,5 @@
 import '@testing-library/jest-dom';
-import '../scripts/setup-axe.js';
+import { toHaveNoViolations } from 'jest-axe';
+import { expect } from 'vitest';
+
+expect.extend(toHaveNoViolations);
