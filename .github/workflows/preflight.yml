@@ -151,7 +151,7 @@ jobs:
     steps:
       - name: Verify All Dependencies Succeeded
         # Ensures that if any job fails, is cancelled, OR IS SKIPPED, the gate fails.
-        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped') }}
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped')
         run: |
           echo "::error::Gate Failed! One or more preflight checks failed or were unexpectedly skipped."
           exit 1

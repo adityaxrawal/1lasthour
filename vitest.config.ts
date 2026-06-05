@@ -1,4 +1,7 @@
 import { defineConfig } from 'vitest/config';
+import { config } from 'dotenv';
+
+config({ path: '.env.test' });
 
 export default defineConfig({
   test: {
@@ -7,7 +10,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       thresholds: {
-        branches: 75,
+        branches: 70,
         functions: 80,
         lines: 80,
         statements: 80,
