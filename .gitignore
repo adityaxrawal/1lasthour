@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 .vite
 .fallow
+.eslintcache
 
 # Ignore Data
 src/features/cfa/data/
@@ -38,6 +39,7 @@ pending.md
 .antigravity
 .ui-images
 about-exam-hero-backup.png
+
 # Env files
 .env
 .env.*

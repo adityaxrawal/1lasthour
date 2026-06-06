@@ -129,8 +129,8 @@ export function useProtection() {
 
     // ── 10. Console warning ───────────────────────────────────────────────────
     /* eslint-disable no-console */
-    console.log('%c⛔ STOP', 'color:red;font-size:32px;font-weight:bold;');
-    console.log(
+    console.info('%c⛔ STOP', 'color:red;font-size:32px;font-weight:bold;');
+    console.info(
       '%cThis is a browser developer console. All access to this platform is ' +
         'logged and session-watermarked. Unauthorised extraction of content ' +
         'violates our Terms of Service and applicable copyright law.',
