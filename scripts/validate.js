@@ -44,7 +44,7 @@ const ROOT = path.resolve(__dirname, '..');
 // Configuration Constants
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REQUIRED_ENVS = ['VITE_API_URL', 'VITE_APP_NAME'];
+const REQUIRED_ENVS = ['VITE_API_BASE_URL'];
 
 const REQUIRED_ARTIFACTS = ['dist/index.html'];
 
@@ -268,7 +268,7 @@ function buildStages(opts) {
       key: 'types',
       name: 'Type Checking',
       command: 'pnpm',
-      args: ['exec', 'tsc', '--noEmit'],
+      args: ['run', 'typecheck'],
       description: 'Validating TypeScript correctness and interfaces',
       allowFailure: false,
     },
