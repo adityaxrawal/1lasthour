@@ -156,7 +156,7 @@ describe('validate.js', () => {
       fs.readFileSync.mockImplementation((path) => {
         if (path.includes('package.json'))
           return '{"scripts": {"build": "a","lint": "a","format:check": "a","test:ci": "a"}}';
-        return 'VITE_API_URL=http://localhost\nVITE_APP_NAME=App\n';
+        return 'VITE_API_BASE_URL=http://localhost\n';
       });
       child_process.spawnSync.mockReturnValue({
         status: 0,
@@ -175,7 +175,7 @@ describe('validate.js', () => {
       fs.readFileSync.mockImplementation((path) => {
         if (path.includes('package.json'))
           return '{"scripts": {"build": "","lint": "","format:check": "","test:ci": ""}}';
-        return 'VITE_API_URL=http://localhost\nVITE_APP_NAME=App\n';
+        return 'VITE_API_BASE_URL=http://localhost\n';
       });
       child_process.spawnSync.mockReturnValue({ status: 0, stdout: '8.0.0\n' });
 
@@ -191,7 +191,7 @@ describe('validate.js', () => {
       fs.readFileSync.mockImplementation((path) => {
         if (path.includes('package.json'))
           return '{"scripts": {"build": "","lint": "","format:check": "","test:ci": ""}}';
-        return 'VITE_API_URL=http://localhost\nVITE_APP_NAME=App\n';
+        return 'VITE_API_BASE_URL=http://localhost\n';
       });
       child_process.spawnSync.mockReturnValue({ status: 0, stdout: '8.0.0\n' });
 
