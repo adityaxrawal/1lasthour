@@ -1,9 +1,9 @@
 import { ChevronDown } from 'lucide-react';
 import React, { memo, useState } from 'react';
 
-import { SECTIONS } from '../data/privacyData';
+import { privacyData } from '../data/privacyData.jsx';
 
-
+const SECTIONS = privacyData.sections;
 
 const PrivacyPolicyAccordion = memo(function PrivacyPolicyAccordion() {
   const [openSectionIds, setOpenSectionIds] = useState(() => new Set(SECTIONS.map((s) => s.id)));
@@ -22,7 +22,7 @@ const PrivacyPolicyAccordion = memo(function PrivacyPolicyAccordion() {
 
   return (
     <div className="mx-auto space-y-4">
-      {SECTIONS.map((section) => {
+      {SECTIONS.map((section, index) => {
         const isOpen = openSectionIds.has(section.id);
         return (
           <div
@@ -39,7 +39,7 @@ const PrivacyPolicyAccordion = memo(function PrivacyPolicyAccordion() {
                   <section.icon className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />
                 </div>
                 <div className="w-7 h-7 rounded-full bg-[#1E4FCD] dark:bg-blue-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0 transition-colors duration-200">
-                  {section.id}
+                  {index + 1}
                 </div>
                 <h2 className="text-lg md:text-xl font-bold text-[#0F1B3D] dark:text-white transition-colors duration-200">
                   {section.title}

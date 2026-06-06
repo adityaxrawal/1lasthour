@@ -28,7 +28,7 @@ const iconMap = {
   Mail: Mail,
 };
 
-export function TermsSectionCard({ section }) {
+export function TermsSectionCard({ section, index }) {
   const [isOpen, setIsOpen] = useState(true); // Default all to open per screenshot, or maybe they are togglable? Screenshot shows them open or just normal cards. Let's make them normal cards, maybe chevron implies toggle. I will keep them open by default but allow toggling just in case, or just static. The screenshot seems to show static cards with a chevron. I will make them togglable.
 
   const IconComponent = iconMap[section.icon] || FileText;
@@ -46,7 +46,7 @@ export function TermsSectionCard({ section }) {
               <IconComponent size={28} strokeWidth={2} />
             </div>
             <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#2f6cff] dark:bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-md border-2 border-white dark:border-slate-800">
-              {section.id}
+              {index + 1}
             </div>
           </div>
 

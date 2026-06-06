@@ -12,241 +12,259 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
-const ListContent = ({ description, items, postDescription }) => (
-  <div className="space-y-4">
-    <p>{description}</p>
-    <ul className="list-disc pl-5 space-y-2">
-      {items.map((item, idx) => (
-        <li key={idx}>
-          <strong>{item.title}:</strong> {item.text}
-        </li>
-      ))}
-    </ul>
-    {postDescription && <p>{postDescription}</p>}
-  </div>
-);
+import { ListContent } from '../components/ListContent';
 
-// noinspection DuplicatedCode
-export const SECTIONS = [
-  {
-    id: 1,
-    title: 'Information We Collect',
-    icon: User,
-    content: (
-      <ListContent
-        description="We may collect the following types of information when you use 1LastHour:"
-        items={[
-          {
-            title: 'Personal Information',
-            text: 'When you create an account, we may collect your name, email address, and other contact details.',
-          },
-          {
-            title: 'Study Data',
-            text: 'We track your progress through the CFA Level 1 Curriculum, including modules completed, quiz scores, and study habits to provide personalized analytics.',
-          },
-          {
-            title: 'Usage Data & Device Information',
-            text: 'We automatically collect data about your interaction with our platform, such as your IP address, browser type, device information, and pages visited.',
-          },
-        ]}
-      />
-    ),
-  },
-  {
-    id: 2,
-    title: 'How We Use Your Information',
-    icon: ClipboardList,
-    content: (
-      <ListContent
-        description="We use the collected information for various purposes, including:"
-        items={[
-          {
-            title: 'To Provide and Maintain our Service',
-            text: 'Ensuring the platform functions correctly, including the CFA curriculum browser and study dashboard.',
-          },
-          {
-            title: 'To Personalize Your Experience',
-            text: 'Saving your preferences (such as dark/light theme settings via local storage) and tailoring your study experience.',
-          },
-          {
-            title: 'To Improve our Platform',
-            text: 'Analyzing usage patterns to enhance features, optimize performance, and develop new tools.',
-          },
-          {
-            title: 'To Communicate with You',
-            text: 'Sending you updates, newsletters, security alerts, and support messages.',
-          },
-        ]}
-      />
-    ),
-  },
-  {
-    id: 3,
-    title: 'Data Storage and Security',
-    icon: ShieldCheck,
-    content: (
-      <ListContent
-        description="The security of your data is important to us. We implement industry-standard security measures to protect your personal and financial information:"
-        items={[
-          {
-            title: 'Session Security',
-            text: 'We use cryptographic signatures and fingerprint binding to ensure session-based API security and prevent unauthorized access.',
-          },
-          {
-            title: 'Local Storage',
-            text: 'Non-sensitive preferences (like UI themes) are stored locally on your device for performance optimization.',
-          },
-          {
-            title: 'Encryption',
-            text: 'We use secure protocols (HTTPS) to transmit data between your browser and our servers.',
-          },
-        ]}
-        postDescription="While we strive to use commercially acceptable means to protect your personal data, no method of transmission over the Internet is 100% secure."
-      />
-    ),
-  },
-  {
-    id: 4,
-    title: 'Cookies and Tracking Technologies',
-    icon: Cookie,
-    content: (
-      <div className="space-y-4">
-        <p>
-          We use cookies, local storage, and similar tracking technologies to track activity on our
-          platform and hold certain information. You can instruct your browser to refuse all cookies
-          or to indicate when a cookie is being sent. However, if you do not accept cookies or local
-          storage, some parts of our platform may not function properly.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: 5,
-    title: 'Third-Party Services',
-    icon: Users,
-    content: (
-      <div className="space-y-4">
-        <p>
-          We may employ third-party companies and individuals to facilitate our Service, provide the
-          Service on our behalf, perform Service-related services, or assist us in analyzing how our
-          Service is used. These third parties have access to your personal data only to perform
-          these tasks on our behalf and are obligated not to disclose or use it for any other
-          purpose.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: 6,
-    title: 'Your Data Protection Rights',
-    icon: Lock,
-    content: (
-      <div className="space-y-4">
-        <p>
-          Depending on your location, you may have the following rights regarding your personal
-          data:
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <ul className="list-disc pl-5 space-y-2">
-            <li>The right to access, update, or delete the information we have on you.</li>
-            <li>
-              The right of rectification: You have the right to have your information rectified if
-              that information is inaccurate or incomplete.
-            </li>
-            <li>
-              The right to object: You have the right to object to our processing of your personal
-              data.
-            </li>
-          </ul>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>
-              The right of restriction: You have the right to request that we restrict the
-              processing of your personal information.
-            </li>
-            <li>
-              The right to data portability: You have the right to be provided with a copy of the
-              information we have on you in a structured, human-readable format.
-            </li>
-            <li>
-              The right to withdraw consent: You have the right to withdraw your consent at any time
-              where 1LastHour relied on your consent to process your personal information.
-            </li>
-          </ul>
+const EFFECTIVE_DATE = 'June 5, 2026';
+const LAST_UPDATED_DATE = 'June 7, 2026';
+const COMPANY_NAME = '1lasthour';
+const GOVERNING_JURISDICTION = 'India';
+const GRIEVANCE_OFFICER_NAME = '--';
+const GRIEVANCE_OFFICER_EMAIL = 'grievance@1lasthour.vercel.app';
+const CONTACT_EMAIL = 'support@1lasthour.vercel.app';
+const REGISTERED_ADDRESS = '--';
+
+export const privacyData = {
+  effectiveDate: EFFECTIVE_DATE,
+  lastUpdated: LAST_UPDATED_DATE,
+  version: '1.0',
+  sections: [
+    {
+      id: 'introduction',
+      title: 'Introduction',
+      icon: Globe,
+      content: (
+        <div className="space-y-4">
+          <p>
+            Welcome to 1lasthour. This Privacy Policy explains how {COMPANY_NAME} collects, uses,
+            and discloses information about you when you access or use our platform at
+            1lasthour.com.
+          </p>
+          <p>
+            This policy is governed by the laws of {GOVERNING_JURISDICTION}, including the DPDP Act
+            2023.
+          </p>
         </div>
-      </div>
-    ),
-  },
-  {
-    id: 7,
-    title: "Children's Privacy",
-    icon: Baby,
-    content: (
-      <div className="space-y-4">
-        <p>
-          Our Service does not address anyone under the age of 13. We do not knowingly collect
-          personally identifiable information from anyone under the age of 13. If you are a parent
-          or guardian and you are aware that your child has provided us with personal data, please
-          contact us.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: 8,
-    title: 'Changes to This Privacy Policy',
-    icon: RefreshCw,
-    content: (
-      <div className="space-y-4">
-        <p>
-          We may update our Privacy Policy from time to time. We will notify you of any changes by
-          posting the new Privacy Policy on this page and updating the &quot;Effective Date&quot; at
-          the top. You are advised to review this Privacy Policy periodically for any changes.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: 9,
-    title: 'Contact Us',
-    icon: Mail,
-    content: (
-      <div className="space-y-4">
-        <p>If you have any questions about this Privacy Policy, please contact us:</p>
-        <div className="flex flex-col md:flex-row gap-6 mt-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#F8F9FD] dark:bg-slate-700 flex items-center justify-center">
-              <Mail className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm text-[#666666] dark:text-slate-400">By email:</span>
-              <a
-                href="mailto:support@1lasthour.com"
-                className="font-medium text-[#1E4FCD] dark:text-blue-400 hover:underline"
-              >
-                support@1lasthour.com
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#F8F9FD] dark:bg-slate-700 flex items-center justify-center">
-              <Globe className="w-5 h-5 text-[#1E4FCD] dark:text-blue-400" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm text-[#666666] dark:text-slate-400">
-                By visiting our website:
-              </span>
-              <a
-                href="https://1lasthour.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-[#1E4FCD] dark:text-blue-400 hover:underline"
-              >
-                1lasthour.com
-              </a>
-            </div>
-          </div>
+      ),
+    },
+    {
+      id: 'scope',
+      title: 'Scope',
+      icon: ClipboardList,
+      content: (
+        <div className="space-y-4">
+          <p>
+            This policy applies to all users of the 1lasthour platform, specifically for CFA Level 1
+            exam preparation.
+          </p>
         </div>
-      </div>
-    ),
-  },
-];
+      ),
+    },
+    {
+      id: 'data_collected',
+      title: 'Data We Collect',
+      icon: User,
+      content: (
+        <ListContent
+          description="We collect the following types of information:"
+          items={[
+            {
+              title: 'Data you provide',
+              text: 'Registration fields and profile information.',
+            },
+            {
+              title: 'Data collected automatically',
+              text: 'IP address, browser fingerprint, logs, cookies, and usage events (modules completed, quiz scores, study habits).',
+            },
+            {
+              title: 'Data from third parties',
+              text: 'OAuth providers (if applicable).',
+            },
+          ]}
+        />
+      ),
+    },
+    {
+      id: 'how_we_use',
+      title: 'How We Use Your Data',
+      icon: ClipboardList,
+      content: (
+        <ListContent
+          description="We use the collected information for:"
+          items={[
+            {
+              title: 'Providing the Service',
+              text: 'To ensure the platform functions correctly and tracks your study progress.',
+            },
+            {
+              title: 'Personalization',
+              text: 'To save your preferences (e.g., UI theme) and tailor your study experience.',
+            },
+            {
+              title: 'Analytics',
+              text: 'To analyze usage patterns and improve our platform.',
+            },
+          ]}
+        />
+      ),
+    },
+    {
+      id: 'legal_basis',
+      title: 'Legal Basis for Processing',
+      icon: ShieldCheck,
+      content: (
+        <ListContent
+          description="We process your data based on:"
+          items={[
+            {
+              title: 'Consent',
+              text: 'When you agree to our terms and use our platform.',
+            },
+            {
+              title: 'Contract',
+              text: 'To provide the educational services you requested.',
+            },
+            {
+              title: 'Legitimate Interest',
+              text: 'To improve our services and ensure security.',
+            },
+            {
+              title: 'Legal Obligation',
+              text: 'To comply with applicable laws and regulations.',
+            },
+          ]}
+        />
+      ),
+    },
+    {
+      id: 'cookies',
+      title: 'Cookies & Local Storage',
+      icon: Cookie,
+      content: (
+        <ListContent
+          description="We use local storage keys:"
+          items={[
+            {
+              title: 'theme',
+              text: 'Stored in localStorage to remember your dark/light mode preference across sessions.',
+            },
+          ]}
+          postDescription="We also use cryptographic signatures to secure your session."
+        />
+      ),
+    },
+    {
+      id: 'third_party',
+      title: 'Third-Party Sharing',
+      icon: Users,
+      content: (
+        <div className="space-y-4">
+          <p>We do not share, sell, or disclose your personal data to any third parties.</p>
+        </div>
+      ),
+    },
+    {
+      id: 'your_rights',
+      title: 'Your Rights',
+      icon: Lock,
+      content: (
+        <ListContent
+          description="Under the DPDP Act 2023 (and GDPR where applicable), you have:"
+          items={[
+            {
+              title: 'Right to Access',
+              text: 'You can request access to the personal data we hold about you.',
+            },
+            {
+              title: 'Right to Correction',
+              text: 'You can request correction of inaccurate data.',
+            },
+            {
+              title: 'Right to Erasure',
+              text: 'You can request deletion of your data.',
+            },
+            {
+              title: 'Grievance Redressal',
+              text: 'You have the right to readily available means of grievance redressal.',
+            },
+          ]}
+        />
+      ),
+    },
+    {
+      id: 'childrens_privacy',
+      title: "Children's Privacy",
+      icon: Baby,
+      content: (
+        <div className="space-y-4">
+          <p>
+            Our Service is intended for individuals 18 years of age or older (the minimum age for
+            CFA exam eligibility). We do not knowingly collect personal data from minors.
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: 'security',
+      title: 'Security Measures',
+      icon: ShieldCheck,
+      content: (
+        <ListContent
+          description="We implement technical measures to protect your data:"
+          items={[
+            {
+              title: 'Session Security',
+              text: 'We use cryptographic signatures (HMAC) and browser fingerprint binding to secure API requests.',
+            },
+          ]}
+        />
+      ),
+    },
+    {
+      id: 'changes',
+      title: 'Changes to This Policy',
+      icon: RefreshCw,
+      content: (
+        <div className="space-y-4">
+          <p>
+            We may update our Privacy Policy. We will notify you by posting the new policy on this
+            page. Continued use of the platform constitutes acceptance of the changes.
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: 'grievance_officer',
+      title: 'Grievance Officer',
+      icon: ShieldCheck,
+      content: (
+        <div className="space-y-4">
+          <p>
+            In accordance with the DPDP Act 2023, the contact details of the Grievance Officer are:
+          </p>
+          <p>
+            {GRIEVANCE_OFFICER_NAME}
+            <br />
+            {COMPANY_NAME}
+            <br />
+            Email: {GRIEVANCE_OFFICER_EMAIL}
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: 'contact_us',
+      title: 'Contact Us',
+      icon: Mail,
+      content: (
+        <div className="space-y-4">
+          <p>If you have any questions, please contact us at:</p>
+          <p>
+            Email: {CONTACT_EMAIL}
+            <br />
+            Address: {REGISTERED_ADDRESS}
+          </p>
+        </div>
+      ),
+    },
+  ],
+};

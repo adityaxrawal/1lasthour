@@ -18,8 +18,7 @@ const PrivacyPolicyHero = memo(function PrivacyPolicyHero() {
         <div className="flex items-center gap-2 text-[#666666] dark:text-slate-300 font-medium bg-[#F8F9FD] dark:bg-slate-800 py-2 px-4 rounded-full w-fit">
           <Calendar className="w-4 h-4 text-[#1E4FCD] dark:text-blue-400" />
           <span>
-            Effective Date:{' '}
-            <span className="text-[#1E4FCD] dark:text-blue-400">June 5, 2026</span>
+            Effective Date: <span className="text-[#1E4FCD] dark:text-blue-400">June 5, 2026</span>
           </span>
         </div>
       </div>
