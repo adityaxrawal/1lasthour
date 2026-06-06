@@ -26,10 +26,10 @@ const AboutExamPage = memo(function AboutExamPage() {
       <main className="pt-16">
         <HeroSection />
 
-        <div className="mx-auto max-w-[1400px] px-6 py-16 space-y-16">
+        <div className="mx-auto max-w-[1400px] px-6 py-16">
           <AtAGlanceSection />
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          <div id="exam-structure" className="grid grid-cols-1 gap-8 lg:grid-cols-12 pt-20">
             <div className="lg:col-span-8">
               <ExamStructureSection />
             </div>
@@ -38,7 +38,7 @@ const AboutExamPage = memo(function AboutExamPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          <div id="topic-weights" className="grid grid-cols-1 gap-8 lg:grid-cols-12 pt-20">
             <div className="lg:col-span-8">
               <TopicWeightsSection />
             </div>
@@ -47,11 +47,17 @@ const AboutExamPage = memo(function AboutExamPage() {
             </div>
           </div>
 
-          <RegistrationTimelineSection />
+          <div className="pt-20">
+            <RegistrationTimelineSection />
+          </div>
 
-          <DifficultySection />
+          <div className="pt-20">
+            <DifficultySection />
+          </div>
 
-          <SuccessCTABanner />
+          <div className="pt-20">
+            <SuccessCTABanner />
+          </div>
         </div>
       </main>
 

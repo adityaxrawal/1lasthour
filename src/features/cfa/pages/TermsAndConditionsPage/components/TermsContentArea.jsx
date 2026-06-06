@@ -6,12 +6,6 @@ import { termsData } from '../data/termsData.jsx';
 import { TermsSectionCard } from './TermsSectionCard';
 
 export function TermsContentArea() {
-  const currentDate = new Date().toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
-
   return (
     <div className="bg-white dark:bg-slate-900/50 rounded-[32px] p-6 md:p-10 my-12 dark:ring-1 dark:ring-slate-800">
       {/* Effective Date Card */}
@@ -21,7 +15,8 @@ export function TermsContentArea() {
         </div>
         <div className="text-center md:text-left flex-grow pt-2">
           <h2 className="text-[20px] md:text-[24px] font-bold text-[#102a5c] dark:text-white mb-2">
-            Effective Date: <span className="text-[#2f6cff] dark:text-blue-400">{currentDate}</span>
+            Effective Date:{' '}
+            <span className="text-[#2f6cff] dark:text-blue-400">{termsData.effectiveDate}</span>
           </h2>
           <p className="text-[16px] leading-[1.8] text-[#667085] dark:text-slate-300">
             These Terms and Conditions constitute a legally binding agreement made between you and
@@ -34,8 +29,8 @@ export function TermsContentArea() {
 
       {/* Sections List */}
       <div className="flex flex-col gap-4">
-        {termsData.map((section) => (
-          <TermsSectionCard key={section.id} section={section} />
+        {termsData.sections.map((section, index) => (
+          <TermsSectionCard key={section.id} section={section} index={index} />
         ))}
       </div>
     </div>

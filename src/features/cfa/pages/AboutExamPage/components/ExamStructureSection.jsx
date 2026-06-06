@@ -58,13 +58,12 @@ export const ExamStructureSection = memo(function ExamStructureSection() {
           />
 
           {/* Divider with "Optional Break" */}
-          <div className="flex flex-row md:flex-col items-center justify-center py-4 md:py-0 md:px-6">
-            <div className="flex-1 md:flex-none h-[1px] md:h-full w-full md:w-0 border-t md:border-t-0 md:border-l border-dashed border-border" />
-            <div className="px-4 md:px-2 md:py-4 text-center text-xs font-semibold uppercase tracking-wider text-ink-tertiary bg-surface whitespace-nowrap">
-              Optional
-              <br className="hidden md:block" /> Break
+          <div className="flex flex-row items-center justify-center py-4 md:py-0 md:px-2 w-full md:w-auto">
+            <div className="flex-1 md:flex-none h-[1px] w-full md:w-8 lg:w-12 border-t border-dashed border-border" />
+            <div className="px-4 md:px-3 text-center text-xs font-semibold uppercase tracking-wider text-ink-tertiary bg-surface whitespace-nowrap">
+              Optional Break
             </div>
-            <div className="flex-1 md:flex-none h-[1px] md:h-full w-full md:w-0 border-t md:border-t-0 md:border-l border-dashed border-border" />
+            <div className="flex-1 md:flex-none h-[1px] w-full md:w-8 lg:w-12 border-t border-dashed border-border" />
           </div>
 
           <SessionCard

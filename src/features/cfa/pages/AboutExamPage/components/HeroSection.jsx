@@ -64,7 +64,7 @@ export const HeroSection = memo(function HeroSection() {
                 onClick={() => scrollTo('topic-weights')}
                 className="w-full sm:w-auto rounded-lg bg-[#E8472A] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#d43c22] transition-colors flex items-center justify-center gap-2"
               >
-                Explore the Curriculum <span className="font-bold">&rarr;</span>
+                Explore the Exam Structure <span className="font-bold">&rarr;</span>
               </button>
               <button
                 onClick={() => scrollTo('exam-structure')}
