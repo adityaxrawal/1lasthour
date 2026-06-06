@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 
 const TOPICS_DATA = [
   { title: 'Quantitative Methods', modules: 11, weight: '6-9%' },
@@ -26,7 +27,7 @@ const HeroVisual = memo(function HeroVisual() {
               <div className="h-3 w-3 rounded-full bg-success" />
             </div>
             <div className="mx-4 flex h-6 flex-1 items-center rounded-md bg-surface-2 px-3 text-xs text-ink-secondary">
-              1lasthour.com/cfa/level-1
+              1lasthour.vercel.app/cfa/level-1
             </div>
           </div>
           {/* Simulated content grid */}
@@ -40,22 +41,26 @@ const HeroVisual = memo(function HeroVisual() {
               </h2>
             </div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
-              {TOPICS_DATA.map((topic, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg border border-border bg-surface p-3 transition-colors hover:border-brand/50 md:p-4"
-                >
-                  <div className="line-clamp-1 mb-1 text-sm font-semibold text-ink md:text-base">
-                    {topic.title}
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-ink-secondary">
-                    <span>{topic.modules} modules</span>
-                    <span className="rounded bg-surface-2 px-1.5 py-0.5 text-[10px] font-medium text-ink-secondary">
-                      {topic.weight}
-                    </span>
-                  </div>
-                </div>
-              ))}
+              {TOPICS_DATA.map((topic, i) => {
+                const topicId = topic.title.toLowerCase().replace(/\s+/g, '-');
+                return (
+                  <Link
+                    key={i}
+                    to={`/cfa/level-1/${topicId}`}
+                    className="block rounded-lg border border-border bg-surface p-3 transition-colors hover:border-brand/50 md:p-4 hover:shadow-md cursor-pointer"
+                  >
+                    <div className="line-clamp-1 mb-1 text-sm font-semibold text-ink md:text-base">
+                      {topic.title}
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-ink-secondary">
+                      <span>{topic.modules} modules</span>
+                      <span className="rounded bg-surface-2 px-1.5 py-0.5 text-[10px] font-medium text-ink-secondary">
+                        {topic.weight}
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
