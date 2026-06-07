@@ -44,6 +44,7 @@
     "react-katex": "^3.1.0",
     "react-router-dom": "^7.17.0",
     "tailwind-merge": "^3.4.0",
+    "vercel": "^54.9.1",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
