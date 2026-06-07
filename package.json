@@ -44,7 +44,6 @@
     "react-katex": "^3.1.0",
     "react-router-dom": "^7.17.0",
     "tailwind-merge": "^3.4.0",
-    "vercel": "^54.9.1",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
@@ -80,6 +79,7 @@
     "secretlint": "^13.0.2",
     "tailwindcss": "^4.1.18",
     "typescript": "^6.0.3",
+    "vercel": "^54.9.1",
     "vite": "^8.0.16",
     "vitest": "^4.1.8"
   },

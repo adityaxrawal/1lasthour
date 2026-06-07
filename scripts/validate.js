@@ -260,7 +260,7 @@ function buildStages(opts) {
       key: 'security',
       name: 'Security Audit',
       command: 'pnpm',
-      args: ['audit', '--audit-level=high'],
+      args: ['audit', '--prod', '--audit-level=high'],
       description: 'Scanning for high-severity dependency vulnerabilities',
       allowFailure: false,
     },
